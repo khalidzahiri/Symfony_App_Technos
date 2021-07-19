@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Inscription
+{% endblock %}
+
+{% block TitrePage%}
+    Inscription
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <label for="">Pseudo</label>
+    {{ form_row(form.username) }}
+    <label for="">Nom</label>
+    {{ form_row(form.nom) }}
+    <label for="">Prenom</label>
+    {{ form_row(form.prenom) }}
+    <label for="">Email</label>
+    {{ form_row(form.email) }}
+    <label for="">Mot de Passe</label>
+    {{ form_row(form.password) }}
+    <label for="">Confirmer mot de passe</label>
+    {{ form_row(form.confirmPassword) }}
+    {{ form_row(form.valider) }}
+
+
+
+    {{ form_end(form) }}
+
+{% endblock %}
