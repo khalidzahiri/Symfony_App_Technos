@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -91,6 +93,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $github;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tips::class, mappedBy="idUser")
+     */
+    private $tips;
+
+    public function __construct()
+    {
+        $this->tips = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -231,6 +243,36 @@ class User implements UserInterface
     public function setGithub(?string $github): self
     {
         $this->github = $github;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tips[]
+     */
+    public function getTips(): Collection
+    {
+        return $this->tips;
+    }
+
+    public function addTip(Tips $tip): self
+    {
+        if (!$this->tips->contains($tip)) {
+            $this->tips[] = $tip;
+            $tip->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTip(Tips $tip): self
+    {
+        if ($this->tips->removeElement($tip)) {
+            // set the owning side to null (unless already changed)
+            if ($tip->getIdUser() === $this) {
+                $tip->setIdUser(null);
+            }
+        }
 
         return $this;
     }
