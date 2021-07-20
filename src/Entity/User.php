@@ -74,6 +74,24 @@ class User implements UserInterface
      */
     private $reset;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    // propriété créée pour gérer la modification de photo dans le formulaire qui n'est pas reliée à la BDD (n'a pas en parametre @ORM\column)
+    public $photoModif;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkedin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $github;
+
 
     public function getId(): ?int
     {
@@ -177,6 +195,42 @@ class User implements UserInterface
     public function setReset(?string $reset): self
     {
         $this->reset = $reset;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    public function getGithub(): ?string
+    {
+        return $this->github;
+    }
+
+    public function setGithub(?string $github): self
+    {
+        $this->github = $github;
 
         return $this;
     }
