@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Inscription
+{% endblock %}
+
+{% block TitrePage%}
+    Inscription
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <label for="">Pseudo</label>
+    {{ form_row(form.username) }}
+    <label for="">Nom</label>
+    {{ form_row(form.nom) }}
+    <label for="">Prenom</label>
+    {{ form_row(form.prenom) }}
+    <label for="">Email</label>
+    {{ form_row(form.email) }}
+    <label for="">Mot de Passe</label>
+    {{ form_row(form.password) }}
+    <label for="">Confirmer mot de passe</label>
+    {{ form_row(form.confirmPassword) }}
+    <label for="">Profil Linkedin</label>
+    {{ form_row(form.linkedin) }}
+    <label for="">Profil GitHub</label>
+    {{ form_row(form.github) }}
+    <label for="">Photo de profil</label>
+    {{ form_row(form.photo, { 'attr':{"onChange":"loadFile(event)"} }) }}
+    <div class="col-md-12 text-center">
+
+        <img id="image" style='width:300px'>
+
+    </div>
+    {{ form_row(form.valider) }}
+
+
+
+    {{ form_end(form) }}
+
+    <script>
+
+        var loadFile = function (event) {
+            var image = document.getElementById('image');
+
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+    </script>
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+
+        })
+    </script>
+{% endblock %}

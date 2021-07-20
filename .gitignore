@@ -171,6 +171,7 @@ fabric.properties
 !bin/console
 !bin/symfony_requirements
 /vendor/
+<<<<<<< HEAD
 
 # Assets and user uploads
 /web/bundles/
@@ -197,3 +198,21 @@ fabric.properties
 /public/js/
 
 # End of https://www.toptal.com/developers/gitignore/api/symfony,phpstorm,macos
+=======
+.idea/
+var/
+.env
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+.idea/
+>>>>>>> main
