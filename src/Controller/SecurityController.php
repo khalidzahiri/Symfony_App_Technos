@@ -30,6 +30,18 @@ class SecurityController extends AbstractController
             $hash=$user->getPassword();
             $hashpassword=$encoder->encodePassword($user, $hash);
             $user->setPassword($hashpassword);
+            $photo = $form->get('photo')->getData();
+
+            if ($photo):
+                $nomphoto = date('YmdHis').uniqid().$photo->getClientOriginalName();
+
+                $photo->move(
+                    $this->getParameter('upload_directory'),
+                    $nomphoto
+                );
+
+                $user->setPhoto($nomphoto);
+            endif;
 
             $manager->persist($user);
             $manager->flush();
