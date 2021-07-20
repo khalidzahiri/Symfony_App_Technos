@@ -34,7 +34,7 @@ class Tutoriel
 
     /**
      * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="tutoriels")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $idTechno;
 
