@@ -35,8 +35,6 @@ class OutilType extends AbstractType
     //                "placeholder"=>"Veuillez remplir ce champ"
     //            ]
     //        ])
-            ->add('Valider', SubmitType::class)
-
         ;
     }
 
