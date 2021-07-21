@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Accueil
+{% endblock %}
+
+{% block TitrePage%}
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#Intro">Intro</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#Doc">Documentation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#Inspiration">Inspiration</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#profile">Outils</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#profile">Astuce</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#">Pro</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade show active" id="Intro">
+        <p> JavaScript (souvent abrégé en « JS ») est un langage de script léger, orienté objet, principalement connu comme le langage de script des pages web. Mais il est aussi utilisé dans de nombreux environnements extérieurs aux navigateurs web tels que Node.js, Apache CouchDB voire Adobe Acrobat. Le code JavaScript est interprété ou compilé à la volée (JIT). C'est un langage à objets utilisant le concept de prototype, disposant d'un typage faible et dynamique qui permet de programmer suivant plusieurs paradigmes de programmation : fonctionnelle, impérative et orientée objet. Apprenez-en plus sur JavaScript.
+        </p>
+    </div>
+    <div class="tab-pane fade" id="Doc">
+        <p> la documentation pour javascript <a href="https://developer.mozilla.org/fr/docs/orphaned/Web/JavaScript/Guide">Here</a>.</p>
+    </div>
+    <div class="tab-pane fade" id="Tuto">
+        <div class="card mb-3">
+            <h3 class="card-header">Crash course.</h3>
+            <div class="card-body">
+                <h6 class="card-subtitle text-muted">by admin khalid</h6>
+            </div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/H6EhXPX5ejQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+                <a href="#" class="card-link">Save for later</a>
+                <a href="#" class="card-link">Recommend</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="Inspiration">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+                <div class="card-header">Repository github</div>
+                <div class="card-body">
+                    <h4 class="card-title">Awesome JavaScript 10/07/2021</h4>
+                    <p class="card-text">A collection of awesome browser-side JavaScript libraries, resources and shiny things.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

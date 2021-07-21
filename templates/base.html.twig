@@ -18,30 +18,28 @@
 <body style="overflow-x: hidden;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <div class="container-fluid">
-        <a class="navbar-brand mt-2 mb-2" href="#"><h2>DicoWeb</h2></a>
+        <a class="navbar-brand" href="#"><h1>DicoWeb</h1></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Newsletter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-        </div>
+        <form class="d-flex p-3">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"> <h1>Home </h1>
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><h1>Newsletter</h1></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><h1>About</h1></a>
+                    </li>
+                </ul>
+            </div>
     </div>
 </nav>
-
-
 <div class="row justify-content-center mb-3">
     <div class="col-md-6 d-flex justify-content-center" style="margin-top: 15px">
         <h1>{% block TitrePage %}{% endblock %}</h1>
