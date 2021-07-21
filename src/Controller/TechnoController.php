@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Techno;
 use App\Form\TechnoType;
-use App\Repository\ArticleRepository;
 use App\Repository\TechnoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +22,7 @@ class TechnoController extends AbstractController
 
         $techno = new Techno();// Ici on instancie un nouvel objet Article vide que l'on va charger avec les données du formulaire
 
-        $form = $this->createForm(TechnoType::class, $techno);// Ici on instancie un objet form qui va controler automatiquement la correspondance des champs de formulaire (contenus dans articleType) avec l'entité Article (contenu dans $article).
+        $form = $this->createForm(TechnoType::class, $techno, array('ajout'=>true));// Ici on instancie un objet form qui va controler automatiquement la correspondance des champs de formulaire (contenus dans articleType) avec l'entité Article (contenu dans $article).
 
         $form->handleRequest($request); // la  methode handleRequest() de Form nous permet de preparer la requete et remplir notre Objet Article instancié
 
@@ -55,4 +54,41 @@ class TechnoController extends AbstractController
             'technos'=>$technos
         ]);
     }
+
+    /**
+     * @Route("/admin/modifTechno/{id}", name="modifTechno")
+     */
+    public function modifArticle(Techno $techno, Request $request, EntityManagerInterface $manager)
+    {
+        // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
+
+        $form=$this->createForm(TechnoType::class, $techno);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()):
+            $manager->persist($techno);
+            $manager->flush();
+
+            $this->addFlash('success', 'La technologies à bien été modifié');
+            return $this->redirectToRoute('listeTechno');
+        endif;
+
+        return $this->render('back/modifTechno.html.twig',[
+            'form'=>$form->createView(),
+            'techno'=>$techno
+        ]);
+    }
+
+    /**
+     * @Route("/admin/deleteTechno/{id}", name="deleteTechno")
+     */
+    public function deleteArticle(Techno $techno, EntityManagerInterface $manager)
+    {
+        $manager->remove($techno);
+        $manager->flush();
+        $this->addFlash('success', 'La technologie à bien été supprimé');
+        return $this->redirectToRoute('listeTechno');
+    }
 }
+

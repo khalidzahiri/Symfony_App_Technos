@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ parent() }} Ajout Tutoriel
+    {{ parent() }} Modification Techno
 {% endblock %}
 
-
 {% block TitrePage%}
-    Ajout Tutoriel
+    Modification de la technologie
 {% endblock %}
 
 {% block body %}
+
     {% for message in app.flashes('success') %}
         <div class="row justify-content-center mt-4">
             <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
@@ -19,22 +19,19 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
-
     {{ form_start(form) }}
-    <label for="">Nom du tuto</label>
+
+    <label for="">Nom de la technologie</label>
     {{ form_row(form.nom) }}
-    <label for="">Description du Tuto</label>
-    {{ form_row(form.resume) }}
-    <label for="">Difficulté du tutoriel</label>
-    {{ form_row(form.niveau) }}
-    <label for="">Lien vers le tutoriel</label>
-    {{ form_row(form.lien) }}
-    <label for="">Technologie concernée</label>
-    {{ form_row(form.techno) }}
-
+    <label for="">Domaine</label>
+    {{ form_row(form.domaine) }}
+    <label for="">Texte d'introduction</label>
+    {{ form_row(form.intro) }}
+    <label for="">Lien vers documentation</label>
+    {{ form_row(form.doc) }}
     {{ form_row(form.Valider) }}
-
-
 
     {{ form_end(form) }}
 {% endblock %}
+
+

@@ -54,6 +54,11 @@ class TutorielType extends AbstractType
                     'placeholder'=>'Veuillez saisir le lien du tutoriel'
                 ]
             ])
+            ->add('techno', EntityType::class,[
+                'label'=>false,
+                'class'=>Techno::class,
+                'choice_label'=>'nom'
+            ])
             ->add('Valider', SubmitType::class)
         ;
     }

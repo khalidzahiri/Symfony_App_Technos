@@ -38,7 +38,7 @@
                 <td>{{ techno.domaine }}</td>
                 <td>{{ techno.intro}}</td>
                 <td>{{ techno.doc }}</td>
-                <td><a class="btn btn-primary" href="#">Modifier</a><a class="btn btn-danger" href="">Supprimer</a></td>
+                <td><a class="btn btn-primary" href="{{ path('modifTechno',{'id':techno.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTechno',{'id':techno.id})}}">Supprimer</a></td>
 
             </tr>
         {% endfor %}

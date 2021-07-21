@@ -16,4 +16,13 @@ class FrontController extends AbstractController
 
         return $this->render('front/home.html.twig');
     }
+
+    /**
+     * @Route("/front", name="front")
+     */
+    public function front() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    {
+
+        return $this->render('front/front.html.twig');
+    }
 }
