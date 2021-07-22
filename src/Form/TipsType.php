@@ -32,11 +32,13 @@ class TipsType extends AbstractType
                 ]
             ])
             ->add('categorieTips', EntityType::class,[
+                'required'=>false,
                 'label'=>false,
                 'class'=>CategorieTips::class,
                 'choice_label'=>"nom"
             ])
             ->add('techno', EntityType::class,[
+                'required'=>false,
                 'label'=>false,
                 'class'=>Techno::class,
                 'choice_label'=>'nom',

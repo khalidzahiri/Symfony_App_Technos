@@ -55,6 +55,7 @@ class TutorielType extends AbstractType
                 ]
             ])
             ->add('techno', EntityType::class,[
+                'required'=>false,
                 'label'=>false,
                 'class'=>Techno::class,
                 'choice_label'=>'nom',

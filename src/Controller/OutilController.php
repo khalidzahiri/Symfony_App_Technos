@@ -16,7 +16,7 @@ class OutilController extends AbstractController
 {
 
     /**
-    *@Route("/addOutil", name="addOutil")
+    *@Route("/admin/addOutil", name="addOutil")
     */
     public function addOutil(EntityManagerInterface $manager, Request $request)
     {
@@ -38,7 +38,7 @@ class OutilController extends AbstractController
     }
 
     /**
-     * @Route("/listeOutil", name="listeOutil")
+     * @Route("/admin/listeOutil", name="listeOutil")
      */
     public function listOutil(OutilRepository $repository)
     {
