@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Modif Catégorie
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+{% endblock %}
+
+{% block TitrePage%}
+    Modification Catégorie
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+
+    <label for="">Nom de la categorie</label>
+    {{ form_row(form.nom) }}
+
+    {{ form_row(form.Valider) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+
+

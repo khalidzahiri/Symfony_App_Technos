@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Liste des outils
+{% endblock %}
+
+{% block TitrePage%}
+    Liste des outils
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Présentation de l'outil</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for outil in outils %}
+            <tr>
+                <td>{{ outil.nom }}</td>
+                <td>{{ outil.resume }}</td>
+                <td><a class="btn btn-primary" href="{{ path('modifOutil',{'id':outil.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteOutil',{'id':outil.id})}}">Supprimer</a></td>
+
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+
+
+
+    </table>
+
+
+
+{% endblock %}

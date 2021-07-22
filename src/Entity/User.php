@@ -94,16 +94,6 @@ class User implements UserInterface
      */
     private $github;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Tips::class, mappedBy="idUser")
-     */
-    private $tips;
-
-    public function __construct()
-    {
-        $this->tips = new ArrayCollection();
-    }
-
 
     public function getId(): ?int
     {
@@ -247,33 +237,5 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Tips[]
-     */
-    public function getTips(): Collection
-    {
-        return $this->tips;
-    }
 
-    public function addTip(Tips $tip): self
-    {
-        if (!$this->tips->contains($tip)) {
-            $this->tips[] = $tip;
-            $tip->setIdUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTip(Tips $tip): self
-    {
-        if ($this->tips->removeElement($tip)) {
-            // set the owning side to null (unless already changed)
-            if ($tip->getIdUser() === $this) {
-                $tip->setIdUser(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Ajout Technologie
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+{% endblock %}
+
+{% block TitrePage%}
+    Ajout Article
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <label for="">Nom de la technologie</label>
+    {{ form_row(form.nom) }}
+    <label for="">Domaine</label>
+    {{ form_row(form.domaine) }}
+    <label for="">Texte d'introduction</label>
+    {{ form_row(form.intro) }}
+    <label for="">Lien vers documentation</label>
+    {{ form_row(form.doc) }}
+    {{ form_row(form.Valider) }}
+
+
+
+    {{ form_end(form) }}
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+        })
+    </script>
+{% endblock %}
+

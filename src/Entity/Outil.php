@@ -32,11 +32,12 @@ class Outil
     /**
      * @ORM\ManyToMany(targetEntity=Techno::class, inversedBy="outils")
      */
-    private $idTechno;
+    private $techno;
+
 
     public function __construct()
     {
-        $this->idTechno = new ArrayCollection();
+        $this->techno = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,24 +72,25 @@ class Outil
     /**
      * @return Collection|Techno[]
      */
-    public function getIdTechno(): Collection
+    public function getTechno(): Collection
     {
-        return $this->idTechno;
+        return $this->techno;
     }
 
-    public function addIdTechno(Techno $idTechno): self
+    public function addTechno(Techno $techno): self
     {
-        if (!$this->idTechno->contains($idTechno)) {
-            $this->idTechno[] = $idTechno;
+        if (!$this->techno->contains($techno)) {
+            $this->techno[] = $techno;
         }
 
         return $this;
     }
 
-    public function removeIdTechno(Techno $idTechno): self
+    public function removeTechno(Techno $techno): self
     {
-        $this->idTechno->removeElement($idTechno);
+        $this->techno->removeElement($techno);
 
         return $this;
     }
+
 }

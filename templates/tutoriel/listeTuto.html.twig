@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Liste des technos
+{% endblock %}
+
+{% block TitrePage%}
+    Liste des technologies
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Difficulté</th>
+            <th>Lien</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tuto in tutos %}
+            <tr>
+                <td>{{ tuto.nom }}</td>
+                <td>{{ tuto.resume }}</td>
+                <td>{{ tuto.niveau}}</td>
+                <td>{{ tuto.lien }}</td>
+                <td><a class="btn btn-primary" href="{{ path('modifTuto',{'id':tuto.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTuto',{'id':tuto.id})}}">Supprimer</a></td>
+
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+
+
+
+    </table>
+
+
+
+{% endblock %}

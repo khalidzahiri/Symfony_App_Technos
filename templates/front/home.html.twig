@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}
     {{ parent() }} Accueil
 {% endblock %}
 
 {% block TitrePage%}
-    Accueil
 {% endblock %}
 
 {% block body %}
@@ -19,4 +17,56 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
+    <nav class="bg-dark navbar-dark">
+        <div class="container">
+        </div>
+    </nav>
+    <section id="header" class="jumbotron text-center">
+        <h1 class="display-3">Welcome to DicoWeb</h1>
+        <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <div class="col text-center">
+            <button type="button" class="btn btn-outline-success btn-lg mx-auto">Get Started</button>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/html.png') }}"  alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">HTML</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/css.png') }}" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">CSS</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/js.png') }}"  alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Javascript</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
 {% endblock %}

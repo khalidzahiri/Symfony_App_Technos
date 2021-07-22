@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TipsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,22 +30,24 @@ class Tips
     private $resume;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToMany(targetEntity=Techno::class, inversedBy="tips")
      */
-    private $idTechno;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idUser;
+    private $techno;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieTips::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
      */
-    private $idCategorie;
+    private $categorieTips;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $userName;
+
+    public function __construct()
+    {
+        $this->techno = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,39 +78,52 @@ class Tips
         return $this;
     }
 
-    public function getIdTechno(): ?Techno
+    /**
+     * @return Collection|Techno[]
+     */
+    public function getTechno(): Collection
     {
-        return $this->idTechno;
+        return $this->techno;
     }
 
-    public function setIdTechno(?Techno $idTechno): self
+    public function addTechno(Techno $techno): self
     {
-        $this->idTechno = $idTechno;
+        if (!$this->techno->contains($techno)) {
+            $this->techno[] = $techno;
+        }
 
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function removeTechno(Techno $techno): self
     {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?User $idUser): self
-    {
-        $this->idUser = $idUser;
+        $this->techno->removeElement($techno);
 
         return $this;
     }
 
-    public function getIdCategorie(): ?CategorieTips
+    public function getCategorieTips(): ?CategorieTips
     {
-        return $this->idCategorie;
+        return $this->categorieTips;
     }
 
-    public function setIdCategorie(?CategorieTips $idCategorie): self
+    public function setCategorieTips(?CategorieTips $categorieTips): self
     {
-        $this->idCategorie = $idCategorie;
+        $this->categorieTips = $categorieTips;
 
         return $this;
     }
+
+    public function getUserName(): ?string
+    {
+        return $this->userName;
+    }
+
+    public function setUserName(string $userName): self
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
+
 }
