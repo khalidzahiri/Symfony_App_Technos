@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block TitrePage%}
-    Accueil
 {% endblock %}
 
 {% block body %}
@@ -18,35 +17,56 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
-    <body>
-    <div class="container">
-        <h1>Welcome at Dico Web </h1>
-       <img src="{{ asset('upload/example.jpg') }}" class="img-fluid" alt="abstract photo">
-    </div>
-    <h3 class="mt-4"> Sed ut ex orci. Suspendisse vel urna in massa lacinia luctus. Vivamus pretium mauris consequat sollicitudin ultrices. Phasellus ultricies ac quam ac porttitor. Aliquam tempus tortor ut sapien pharetra, vel venenatis metus consectetur. Donec dignissim lacus at tempus pretium. Fusce tincidunt, lectus vitae posuere viverra, odio nulla imperdiet lectus, ac gravida elit leo eget libero. Praesent elementum, dolor ac hendrerit ultrices, mauris enim dignissim nulla, in auctor odio velit nec metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. </h3>
-    <div class="col text-center">
-        <button type="button" class="btn btn-outline-warning btn-lg">Get Started</button>
-    </div>
-    <div class="card-group mt-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui tellus cursusin netus. Pretiumsed orci ad nulla. Feugiatvivamus adipiscing interdum tortorquisque elit lectus litora fringillaquisque, pharetra volutpat. Lacus dis mivivamus platea massa loremvivamus fames, fringillaquisque urna. Arcususpendisse lacusvestibulum dignissimcurabitur fusce rhoncus, lacus iaculis. Lobortisduis purus facilisiaenean auctor parturient viverrapraesent risus mattisaliquam, id turpisquisque. Imperdiet sedut odiovestibulum ridiculus ullamcorper porttitor, loremmorbi nonetiam. Facilisi viverrapraesent ultricies. Himenaeos facilisi commodo consectetur blandit vivamus curae;, at sollicitudin. Eleifendnam bibendum risus venenatis varius consequatvestibulum, convallis sedut.</p>
+    <nav class="bg-dark navbar-dark">
+        <div class="container">
+        </div>
+    </nav>
+    <section id="header" class="jumbotron text-center">
+        <h1 class="display-3">Welcome to DicoWeb</h1>
+        <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <div class="col text-center">
+            <button type="button" class="btn btn-outline-success btn-lg mx-auto">Get Started</button>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/html.png') }}"  alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">HTML</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/css.png') }}" alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">CSS</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('upload/js.png') }}"  alt="" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">Javascript</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
+                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui tellus cursusin netus. Pretiumsed orci ad nulla. Feugiatvivamus adipiscing interdum tortorquisque elit lectus litora fringillaquisque, pharetra volutpat. Lacus dis mivivamus platea massa loremvivamus fames, fringillaquisque urna. Arcususpendisse lacusvestibulum dignissimcurabitur fusce rhoncus, lacus iaculis. Lobortisduis purus facilisiaenean auctor parturient viverrapraesent risus mattisaliquam, id turpisquisque. Imperdiet sedut odiovestibulum ridiculus ullamcorper porttitor, loremmorbi nonetiam. Facilisi viverrapraesent ultricies. Himenaeos facilisi commodo consectetur blandit vivamus curae;, at sollicitudin. Eleifendnam bibendum risus venenatis varius consequatvestibulum, convallis sedut.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui tellus cursusin netus. Pretiumsed orci ad nulla. Feugiatvivamus adipiscing interdum tortorquisque elit lectus litora fringillaquisque, pharetra volutpat. Lacus dis mivivamus platea massa loremvivamus fames, fringillaquisque urna. Arcususpendisse lacusvestibulum dignissimcurabitur fusce rhoncus, lacus iaculis. Lobortisduis purus facilisiaenean auctor parturient viverrapraesent risus mattisaliquam, id turpisquisque. Imperdiet sedut odiovestibulum ridiculus ullamcorper porttitor, loremmorbi nonetiam. Facilisi viverrapraesent ultricies. Himenaeos facilisi commodo consectetur blandit vivamus curae;, at sollicitudin. Eleifendnam bibendum risus venenatis varius consequatvestibulum, convallis sedut.</p>
-            </div>
-        </div>
-    </div>
+    </section>
+
+
 
 
 {% endblock %}

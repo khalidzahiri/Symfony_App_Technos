@@ -32,16 +32,16 @@ class Tutoriel
      */
     private $niveau;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="tutoriels")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $idTechno;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lien;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="idTutoriel")
+     */
+    private $techno;
 
     public function getId(): ?int
     {
@@ -84,18 +84,6 @@ class Tutoriel
         return $this;
     }
 
-    public function getIdTechno(): ?Techno
-    {
-        return $this->idTechno;
-    }
-
-    public function setIdTechno(?Techno $idTechno): self
-    {
-        $this->idTechno = $idTechno;
-
-        return $this;
-    }
-
     public function getLien(): ?string
     {
         return $this->lien;
@@ -107,4 +95,17 @@ class Tutoriel
 
         return $this;
     }
+
+    public function getTechno(): ?Techno
+    {
+        return $this->techno;
+    }
+
+    public function setTechno(?Techno $techno): self
+    {
+        $this->techno = $techno;
+
+        return $this;
+    }
 }
+

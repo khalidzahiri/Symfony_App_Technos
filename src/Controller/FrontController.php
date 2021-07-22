@@ -25,6 +25,7 @@ class FrontController extends AbstractController
         return $this->render('front/front.html.twig');
     }
 
+
     /**
      * @Route("/back", name="back")
      */
@@ -33,5 +34,4 @@ class FrontController extends AbstractController
 
         return $this->render('front/back.html.twig');
     }
-
 }

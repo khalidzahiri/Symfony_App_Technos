@@ -29,19 +29,19 @@ class Tips
 
     /**
      * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $idTechno;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $idUser;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieTips::class, inversedBy="tips")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $idCategorie;
 

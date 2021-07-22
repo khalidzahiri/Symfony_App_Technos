@@ -15,38 +15,31 @@
         {#{{ encore_entry_script_tags('app') }}#}
     {% endblock %}
 </head>
-<div class="body-box">
 <body style="overflow-x: hidden;">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">DicoWeb</a>
+        <a class="navbar-brand" href="#"><h1>DicoWeb</h1></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Newsletter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
+        <form class="d-flex p-3">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"> <h1>Home </h1>
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><h1>Newsletter</h1></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><h1>About</h1></a>
+                    </li>
+                </ul>
+            </div>
     </div>
 </nav>
-
-
 <div class="row justify-content-center mb-3">
     <div class="col-md-6 d-flex justify-content-center" style="margin-top: 15px">
         <h1>{% block TitrePage %}{% endblock %}</h1>
@@ -55,51 +48,35 @@
 
 <div class="container mt-3">
     {% block body %}{% endblock %}
+</div>
 
-    <footerlass="p-3 mb-2 bg-light text-dark">
-        <div class="container py-5">
-            <div class="row py-4">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="{{ asset('upload/logo.png') }}" alt="" width="110" class="mb-3">
-                    <ul class="list-inline mt-4">
-                        <li class="list-inline-item"><a href="#" target="_blank" title="linkedin"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" target="_blank" title="GitHub"><i class="fa fa-vimeo"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h6 class="text-uppercase font-weight-bold mb-4">Mentions Légales</h6>
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><a href="#" class="text-muted">Contact us</a></li>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><a href="#" class="text-muted">Mentoring Program</a></li>
-                        <li class="mb-2"><a href="#" class="text-muted">Associates Developers </a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-lg-0">
-                    <h6 class="text-uppercase font-weight-bold mb-4">Newsletter</h6>
-                    <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-                    <div class="p-1 rounded border">
-                        <div class="input-group">
-                            <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" class="form-control border-0 shadow-0">
-                            <div class="input-group-append">
-                                <button id="button-addon1" type="submit" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<footer class="bg-primary text-dark mt-5 p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="{{ asset('upload/logo.png') }}" alt="" width="110" class="mb-3">
             </div>
-        <div class="bg-light py-4">
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">Mentions Légales</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="#" class="text-muted">Contact us</a></li>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                <h6 class="text-uppercase font-weight-bold mb-4">Company</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="#" class="text-muted">Mentoring Program</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted">Associates Developers </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="py-4">
             <div class="container text-center">
                 <p class="text-muted mb-0 py-2">© 2021 Dico Web All rights reserved.</p>
             </div>
         </div>
-    </footer>
-    {% block JS %}
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    {% endblock %}
-</div>
+    </div>
+</footer>
+{% block JS %}
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
 </body>
-</div>
 </html>

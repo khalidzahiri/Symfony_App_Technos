@@ -13,4 +13,8 @@
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
+<<<<<<< HEAD
 ###< symfony/phpunit-bridge ###
+=======
+###< symfony/phpunit-bridge ###
+>>>>>>> b17b0defaa614584ca0e46bb6c6e8c4f14a988be

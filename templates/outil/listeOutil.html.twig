@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}
-    {{ parent() }} Ajout Tutoriel
+    {{ parent() }} Liste des outils
 {% endblock %}
 
-
 {% block TitrePage%}
-    Ajout Tutoriel
+    Liste des outils
 {% endblock %}
 
 {% block body %}
+
     {% for message in app.flashes('success') %}
         <div class="row justify-content-center mt-4">
             <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
@@ -20,21 +21,30 @@
         </div>
     {% endfor %}
 
-    {{ form_start(form) }}
-    <label for="">Nom du tuto</label>
-    {{ form_row(form.nom) }}
-    <label for="">Description du Tuto</label>
-    {{ form_row(form.resume) }}
-    <label for="">Difficulté du tutoriel</label>
-    {{ form_row(form.niveau) }}
-    <label for="">Lien vers le tutoriel</label>
-    {{ form_row(form.lien) }}
-    <label for="">Technologie concernée</label>
-    {{ form_row(form.techno) }}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Resume</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for outil in outils %}
+            <tr>
+                <td>{{ outil.nom }}</td>
+                <td>{{ outil.resume }}</td>
+                <td><a class="btn btn-primary" href="#">Modifier</a><a class="btn btn-danger" href="">Supprimer</a></td>
 
-    {{ form_row(form.Valider) }}
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
 
 
 
-    {{ form_end(form) }}
+    </table>
+
+
+
 {% endblock %}
