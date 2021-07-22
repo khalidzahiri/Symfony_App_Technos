@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -73,6 +75,34 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reset;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photo;
+
+    // propriété créée pour gérer la modification de photo dans le formulaire qui n'est pas reliée à la BDD (n'a pas en parametre @ORM\column)
+    public $photoModif;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkedin;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $github;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tips::class, mappedBy="idUser")
+     */
+    private $tips;
+
+    public function __construct()
+    {
+        $this->tips = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -177,6 +207,72 @@ class User implements UserInterface
     public function setReset(?string $reset): self
     {
         $this->reset = $reset;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    public function setLinkedin(?string $linkedin): self
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    public function getGithub(): ?string
+    {
+        return $this->github;
+    }
+
+    public function setGithub(?string $github): self
+    {
+        $this->github = $github;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tips[]
+     */
+    public function getTips(): Collection
+    {
+        return $this->tips;
+    }
+
+    public function addTip(Tips $tip): self
+    {
+        if (!$this->tips->contains($tip)) {
+            $this->tips[] = $tip;
+            $tip->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTip(Tips $tip): self
+    {
+        if ($this->tips->removeElement($tip)) {
+            // set the owning side to null (unless already changed)
+            if ($tip->getIdUser() === $this) {
+                $tip->setIdUser(null);
+            }
+        }
 
         return $this;
     }

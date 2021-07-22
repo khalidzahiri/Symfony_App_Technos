@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -56,6 +57,24 @@ class RegistrationType extends AbstractType
                 "label"=>false,
                 "attr"=>[
                     "placeholder"=>"Veuillez remplir ce champ"
+                ]
+            ])
+            ->add('photo', FileType::class,[
+                'required'=>false,
+                'label'=>false
+            ])
+            ->add('linkedin',TextType::class,[
+                "required"=>false,
+                "label"=>false,
+                "attr"=>[
+                    "placeholder"=>"Vous pouvez ici saisir le lien de votre profil Linkedin"
+                ]
+            ])
+            ->add('github',TextType::class,[
+                "required"=>false,
+                "label"=>false,
+                "attr"=>[
+                    "placeholder"=>"Vous pouvez ici saisir le lien de votre profil GitHub"
                 ]
             ])
             ->add('valider', SubmitType::class)
