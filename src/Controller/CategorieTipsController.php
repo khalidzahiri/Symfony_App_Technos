@@ -46,4 +46,40 @@ class CategorieTipsController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/modifCategorieTips/{id}", name="modifCategorieTips")
+     */
+    public function modifCategorieTips(CategorieTips $categorieTips, Request $request, EntityManagerInterface $manager)
+    {
+        // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
+
+        $form=$this->createForm(CategorieTipsType::class, $categorieTips);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()):
+            $manager->persist($categorieTips);
+            $manager->flush();
+
+            $this->addFlash('success', 'La catégorie à bien été modifié');
+            return $this->redirectToRoute('listCategorieTips');
+        endif;
+
+        return $this->render('categorie_tips/modifCategorieTips.html.twig',[
+            'form'=>$form->createView(),
+            'categorieTips'=>$categorieTips
+        ]);
+    }
+
+    /**
+     * @Route("/admin/deleteCategorieTips/{id}", name="deleteCategorieTips")
+     */
+    public function deleteCategorieTips(CategorieTips $categorieTips, EntityManagerInterface $manager)
+    {
+        $manager->remove($categorieTips);
+        $manager->flush();
+        $this->addFlash('success', 'La catégorie à bien été supprimé');
+        return $this->redirectToRoute('listCategorieTips');
+    }
+
 }

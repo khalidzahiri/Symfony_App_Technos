@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Modification Tips
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+{% endblock %}
+
+{% block TitrePage%}
+    Modification Tips
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <label for="">Nom de l'astuce</label>
+    {{ form_row(form.nom) }}
+    <label for="">Resume</label>
+    {{ form_row(form.resume) }}
+    <label for="">Type de Tips</label>
+    {{ form_row(form.categorieTips) }}
+    <label for="">Technologie concernée</label>
+    {{ form_row(form.techno) }}
+
+    {{ form_row(form.Valider) }}
+
+    {{ form_end(form) }}
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+
+        })
+    </script>
+{% endblock %}

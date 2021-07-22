@@ -32,7 +32,7 @@
         {% for categorieTip in categorieTips %}
             <tr>
                 <td>{{ categorieTip.nom }}</td>
-                <td><a class="btn btn-primary" href="#">Modifier</a><a class="btn btn-danger" href="">Supprimer</a></td>
+                <td><a class="btn btn-primary" href="{{ path('modifCategorieTips',{'id':categorieTip.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteCategorieTips',{'id':categorieTip.id})}}">Supprimer</a></td>
 
             </tr>
         {% endfor %}

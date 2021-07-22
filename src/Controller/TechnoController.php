@@ -58,7 +58,7 @@ class TechnoController extends AbstractController
     /**
      * @Route("/admin/modifTechno/{id}", name="modifTechno")
      */
-    public function modifArticle(Techno $techno, Request $request, EntityManagerInterface $manager)
+    public function modifTechno(Techno $techno, Request $request, EntityManagerInterface $manager)
     {
         // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
 
@@ -83,7 +83,7 @@ class TechnoController extends AbstractController
     /**
      * @Route("/admin/deleteTechno/{id}", name="deleteTechno")
      */
-    public function deleteArticle(Techno $techno, EntityManagerInterface $manager)
+    public function deleteTechno(Techno $techno, EntityManagerInterface $manager)
     {
         $manager->remove($techno);
         $manager->flush();

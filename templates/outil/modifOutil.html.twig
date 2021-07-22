@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ parent() }} Ajout Outil
+    {{ parent() }} Modif Outil
 {% endblock %}
 
 {% block stylesheets %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block TitrePage%}
-    Ajout Outil
+    Modification Outil
 {% endblock %}
 
 {% block body %}
@@ -33,9 +33,21 @@
     <label for="">Resume</label>
     {{ form_row(form.resume) }}
 
+    <label for="">Technologies concernées</label>
+    {{ form_row(form.techno) }}
+
     {{ form_row(form.Valider) }}
 
     {{ form_end(form) }}
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+
+        })
+    </script>
 
 {% endblock %}
 

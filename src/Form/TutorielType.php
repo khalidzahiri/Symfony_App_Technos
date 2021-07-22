@@ -57,7 +57,11 @@ class TutorielType extends AbstractType
             ->add('techno', EntityType::class,[
                 'label'=>false,
                 'class'=>Techno::class,
-                'choice_label'=>'nom'
+                'choice_label'=>'nom',
+                'multiple'=>true,
+                'attr'=>[
+                    'class'=>'select2'
+                ]
             ])
             ->add('Valider', SubmitType::class)
         ;

@@ -49,5 +49,39 @@ class OutilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/modifOutil/{id}", name="modifOutil")
+     */
+    public function modifOutil(Outil $outil, Request $request, EntityManagerInterface $manager)
+    {
+        // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
 
+        $form=$this->createForm(OutilType::class, $outil);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()):
+            $manager->persist($outil);
+            $manager->flush();
+
+            $this->addFlash('success', 'L\'outil à bien été modifié');
+            return $this->redirectToRoute('listeOutil');
+        endif;
+
+        return $this->render('outil/modifOutil.html.twig',[
+            'form'=>$form->createView(),
+            'outil'=>$outil
+        ]);
+    }
+
+    /**
+     * @Route("/admin/deleteOutil/{id}", name="deleteOutil")
+     */
+    public function deleteOutil(Outil $outil, EntityManagerInterface $manager)
+    {
+        $manager->remove($outil);
+        $manager->flush();
+        $this->addFlash('success', 'L\outil à bien été supprimé');
+        return $this->redirectToRoute('listeOutil');
+    }
 }

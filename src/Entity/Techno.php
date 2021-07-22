@@ -40,26 +40,28 @@ private $intro;
 private $doc;
 
 /**
-* @ORM\ManyToMany(targetEntity=Outil::class, mappedBy="idTechno")
-*/
-private $outils;
-
-/**
-* @ORM\OneToMany(targetEntity=Tips::class, mappedBy="idTechno")
-*/
+ * @ORM\ManyToMany(targetEntity=Tips::class, mappedBy="techno")
+ */
 private $tips;
 
 /**
-* @ORM\OneToMany(targetEntity=Tutoriel::class, mappedBy="techno")
-*/
-private $idTutoriel;
+ * @ORM\ManyToMany(targetEntity=Tutoriel::class, mappedBy="techno")
+ */
+private $tutoriels;
+
+/**
+ * @ORM\ManyToMany(targetEntity=Outil::class, mappedBy="techno")
+ */
+private $outils;
 
 public function __construct()
 {
-$this->outils = new ArrayCollection();
-$this->tips = new ArrayCollection();
-$this->idTutoriel = new ArrayCollection();
+    $this->outils = new ArrayCollection();
+    $this->tips = new ArrayCollection();
+    $this->tutoriels = new ArrayCollection();
 }
+
+
 
 public function getId(): ?int
 {
@@ -115,91 +117,87 @@ return $this;
 }
 
 
-/**
-* @return Collection|Outil[]
-*/
-public function getOutils(): Collection
-{
-return $this->outils;
-}
 
-public function addOutil(Outil $outil): self
-{
-if (!$this->outils->contains($outil)) {
-$this->outils[] = $outil;
-$outil->addIdTechno($this);
-}
-
-return $this;
-}
-
-public function removeOutil(Outil $outil): self
-{
-if ($this->outils->removeElement($outil)) {
-$outil->removeIdTechno($this);
-}
-
-return $this;
-}
 
 /**
-* @return Collection|Tips[]
-*/
+ * @return Collection|Tips[]
+ */
 public function getTips(): Collection
 {
-return $this->tips;
+    return $this->tips;
 }
 
 public function addTip(Tips $tip): self
 {
-if (!$this->tips->contains($tip)) {
-$this->tips[] = $tip;
-$tip->setIdTechno($this);
-}
+    if (!$this->tips->contains($tip)) {
+        $this->tips[] = $tip;
+        $tip->addTechno($this);
+    }
 
-return $this;
+    return $this;
 }
 
 public function removeTip(Tips $tip): self
 {
-if ($this->tips->removeElement($tip)) {
-// set the owning side to null (unless already changed)
-if ($tip->getIdTechno() === $this) {
-$tip->setIdTechno(null);
-}
-}
+    if ($this->tips->removeElement($tip)) {
+        $tip->removeTechno($this);
+    }
 
-return $this;
+    return $this;
 }
 
 /**
-* @return Collection|Tutoriel[]
-*/
-public function getIdTutoriel(): Collection
+ * @return Collection|Tutoriel[]
+ */
+public function getTutoriels(): Collection
 {
-return $this->idTutoriel;
+    return $this->tutoriels;
 }
 
-public function addIdTutoriel(Tutoriel $idTutoriel): self
+public function addTutoriel(Tutoriel $tutoriel): self
 {
-if (!$this->idTutoriel->contains($idTutoriel)) {
-$this->idTutoriel[] = $idTutoriel;
-$idTutoriel->setTechno($this);
+    if (!$this->tutoriels->contains($tutoriel)) {
+        $this->tutoriels[] = $tutoriel;
+        $tutoriel->addTechno($this);
+    }
+
+    return $this;
 }
 
-return $this;
-}
-
-public function removeIdTutoriel(Tutoriel $idTutoriel): self
+public function removeTutoriel(Tutoriel $tutoriel): self
 {
-if ($this->idTutoriel->removeElement($idTutoriel)) {
-// set the owning side to null (unless already changed)
-if ($idTutoriel->getTechno() === $this) {
-$idTutoriel->setTechno(null);
-}
+    if ($this->tutoriels->removeElement($tutoriel)) {
+        $tutoriel->removeTechno($this);
+    }
+
+    return $this;
 }
 
-return $this;
+/**
+ * @return Collection|Outil[]
+ */
+public function getOutils(): Collection
+{
+    return $this->outils;
+}
+
+public function addOutil(Outil $outil): self
+{
+    if (!$this->outils->contains($outil)) {
+        $this->outils[] = $outil;
+        $outil->addTechno($this);
+    }
+
+    return $this;
+}
+
+public function removeOutil(Outil $outil): self
+{
+    if ($this->outils->removeElement($outil)) {
+        $outil->removeTechno($this);
+    }
+
+    return $this;
 }
 }
 

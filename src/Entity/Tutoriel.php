@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TutorielRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,16 +34,21 @@ class Tutoriel
      */
     private $niveau;
 
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $lien;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Techno::class, inversedBy="idTutoriel")
+     * @ORM\ManyToMany(targetEntity=Techno::class, inversedBy="tutoriels")
      */
     private $techno;
+
+    public function __construct()
+    {
+        $this->techno = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -96,16 +103,29 @@ class Tutoriel
         return $this;
     }
 
-    public function getTechno(): ?Techno
+    /**
+     * @return Collection|Techno[]
+     */
+    public function getTechno(): Collection
     {
         return $this->techno;
     }
 
-    public function setTechno(?Techno $techno): self
+    public function addTechno(Techno $techno): self
     {
-        $this->techno = $techno;
+        if (!$this->techno->contains($techno)) {
+            $this->techno[] = $techno;
+        }
 
         return $this;
     }
+
+    public function removeTechno(Techno $techno): self
+    {
+        $this->techno->removeElement($techno);
+
+        return $this;
+    }
+
 }
 
