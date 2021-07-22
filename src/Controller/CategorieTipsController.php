@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategorieTipsController extends AbstractController
 {
     /**
-     *@Route("/addCategorieTips", name="addCategorieTips")
+     *@Route("/admin/addCategorieTips", name="addCategorieTips")
      */
     public function CategorieTips(EntityManagerInterface $manager, Request $request)
     {
@@ -35,7 +35,7 @@ class CategorieTipsController extends AbstractController
         ]);
     }
     /**
-     * @Route("/listCategorieTips", name="listCategorieTips")
+     * @Route("/admin/listCategorieTips", name="listCategorieTips")
      */
     public function listCategorieTips(CategorieTipsRepository $repository)
     {

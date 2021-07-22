@@ -1,23 +1,9 @@
-
 #header {
     margin-bottom: 80px;
 }
-nav{
-    background: linear-gradient(-45deg, indigo, darkslateblue, goldenrod, #FFF000);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+body{
+    background-color: #F4EDEA;
+    color: #12263A;
 }
 
 .mynav{
@@ -28,15 +14,11 @@ nav{
     background-color: transparent !important;
 }
 .navbar .navbar-brand{
-    color : #FFF;
     font-weight: bolder;
     font-size: 1.3em;
 }
 .navbar .navbar-nav{
     margin : 0 auto;
-}
-.navbar .nav-item a{
-    color: #FFF !important;
 }
 
 .navbar .dropdown-menu{
@@ -50,6 +32,14 @@ nav{
     color:#FFF;
     border:0;
 }
-.navbar form button:hover{
-    background-color: #000;
+
+button{
+    color: #06BCC1;
+}
+
+#canvas1 {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
