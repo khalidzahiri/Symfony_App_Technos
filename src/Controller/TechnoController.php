@@ -32,19 +32,19 @@ class TechnoController extends AbstractController
             $manager->persist($techno); //le manager de symfony fait le lien entre l'entité et la BDD vie l'ORM (Object Relationnel MApping) Doctrine. Grace a la methode persist(), il conserve en memoire la requete preparée.
             $manager->flush(); // ici la methode flush() execute les requete en memoire
 
-            $this->addFlash('success', 'L\'article à bien été ajouté');
+            $this->addFlash('success', 'La technologie à bien été ajouté');
             return $this->redirectToRoute('listeTechno');
 
         endif;
 
-        return $this->render('back/addTechno.html.twig',[
+        return $this->render('techno/addTechno.html.twig',[
             'form'=>$form->createView(),
             'techno'=> $techno
         ]);
     }
 
     /**
-     * @Route("/listeTechno", name="listeTechno")
+     * @Route("/admin/listeTechno", name="listeTechno")
      */
     public function listeTechno(TechnoRepository $repository)
     {
@@ -58,7 +58,7 @@ class TechnoController extends AbstractController
     /**
      * @Route("/admin/modifTechno/{id}", name="modifTechno")
      */
-    public function modifArticle(Techno $techno, Request $request, EntityManagerInterface $manager)
+    public function modifTechno(Techno $techno, Request $request, EntityManagerInterface $manager)
     {
         // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
 
@@ -83,7 +83,7 @@ class TechnoController extends AbstractController
     /**
      * @Route("/admin/deleteTechno/{id}", name="deleteTechno")
      */
-    public function deleteArticle(Techno $techno, EntityManagerInterface $manager)
+    public function deleteTechno(Techno $techno, EntityManagerInterface $manager)
     {
         $manager->remove($techno);
         $manager->flush();

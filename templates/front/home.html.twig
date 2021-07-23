@@ -3,6 +3,10 @@
     {{ parent() }} Accueil
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block TitrePage%}
 {% endblock %}
 
@@ -25,10 +29,9 @@
         <h1 class="display-3">Welcome to DicoWeb</h1>
         <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         <div class="col text-center">
-            <button type="button" class="btn btn-outline-success btn-lg mx-auto"><a href="{{ asset('../parcours')}}">Get Started</a></button>
+            <button type="button" class="btn btn-outline-warning btn-lg mx-auto">Get Started</button>
         </div>
     </section>
-
     <section id="gallery">
         <div class="container">
             <div class="row">

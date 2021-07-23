@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Techno;
 use App\Entity\Tutoriel;
 use App\Form\TechnoType;
+use App\Form\TipsType;
 use App\Form\TutorielType;
 use App\Repository\TechnoRepository;
 use App\Repository\TutorielRepository;
@@ -52,8 +53,44 @@ class TutorielController extends AbstractController
     {
         $tutos=$repository->findAll();
 
-        return $this->render('techno/listeTuto.html.twig',[
+        return $this->render('tutoriel/listeTuto.html.twig',[
             'tutos'=>$tutos
         ]);
+    }
+
+    /**
+     * @Route("/admin/modifTuto/{id}", name="modifTuto")
+     */
+    public function modifTuto(Tutoriel $tutoriel, Request $request, EntityManagerInterface $manager)
+    {
+        // lorsqu'un id est transité dans l'URL et une entité est injecté en dependance, symfony instancie automatiquement l'objet entité et le rempli avec ses données en BDD. Pas besoin d'utiliser la méthode Find($id) du repository
+
+        $form=$this->createForm(TutorielType::class, $tutoriel);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()):
+            $manager->persist($tutoriel);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le tutoriel à bien été modifié');
+            return $this->redirectToRoute('listeTuto');
+        endif;
+
+        return $this->render('tutoriel/modifTuto.html.twig',[
+            'form'=>$form->createView(),
+            'tutoriel'=>$tutoriel
+        ]);
+    }
+
+    /**
+     * @Route("/admin/deleteTuto/{id}", name="deleteTuto")
+     */
+    public function deleteTuto(Tutoriel $tutoriel, EntityManagerInterface $manager)
+    {
+        $manager->remove($tutoriel);
+        $manager->flush();
+        $this->addFlash('success', 'Le tutoriel à bien été supprimé');
+        return $this->redirectToRoute('listeTuto');
     }
 }

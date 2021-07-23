@@ -25,9 +25,10 @@ class CategorieTips
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tips::class, mappedBy="idCategorie")
+     * @ORM\OneToMany(targetEntity=Tips::class, mappedBy="categorieTips")
      */
     private $tips;
+
 
     public function __construct()
     {
@@ -63,7 +64,7 @@ class CategorieTips
     {
         if (!$this->tips->contains($tip)) {
             $this->tips[] = $tip;
-            $tip->setIdCategorie($this);
+            $tip->setCategorieTips($this);
         }
 
         return $this;
@@ -73,11 +74,12 @@ class CategorieTips
     {
         if ($this->tips->removeElement($tip)) {
             // set the owning side to null (unless already changed)
-            if ($tip->getIdCategorie() === $this) {
-                $tip->setIdCategorie(null);
+            if ($tip->getCategorieTips() === $this) {
+                $tip->setCategorieTips(null);
             }
         }
 
         return $this;
     }
+
 }

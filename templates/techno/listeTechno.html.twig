@@ -27,7 +27,10 @@
             <th>Nom</th>
             <th>Domaine</th>
             <th>Texte Intro</th>
-            <th>Liens</th>
+            <th>Documentation</th>
+            <th>Tips</th>
+            <th>Tutoriels</th>
+            <th>Outils</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -38,6 +41,21 @@
                 <td>{{ techno.domaine }}</td>
                 <td>{{ techno.intro}}</td>
                 <td>{{ techno.doc }}</td>
+                <td>
+                    {% for tip in techno.tips %}
+                        {{ tip.nom }},
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for tuto in techno.tutoriels %}
+                        {{ tuto.nom }},
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for outil in techno.outils %}
+                        {{ outil.nom }},
+                    {% endfor %}
+                </td>
                 <td><a class="btn btn-primary" href="{{ path('modifTechno',{'id':techno.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTechno',{'id':techno.id})}}">Supprimer</a></td>
 
             </tr>

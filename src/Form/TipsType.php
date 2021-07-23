@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\CategorieTips;
+use App\Entity\Techno;
 use App\Entity\Tips;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,10 +31,23 @@ class TipsType extends AbstractType
                     'placeholder'=>'Veuillez saisir le nom de la technologie choisie'
                 ]
             ])
-        //    ->add('idTechno')
-        //    ->add('idUser')
-        //    ->add('idCategorie')
-        ->add('Valider', SubmitType::class)
+            ->add('categorieTips', EntityType::class,[
+                'required'=>false,
+                'label'=>false,
+                'class'=>CategorieTips::class,
+                'choice_label'=>"nom"
+            ])
+            ->add('techno', EntityType::class,[
+                'required'=>false,
+                'label'=>false,
+                'class'=>Techno::class,
+                'choice_label'=>'nom',
+                'multiple'=>true,
+                'attr'=>[
+                    'class'=>'select2'
+                ]
+            ])
+            ->add('Valider', SubmitType::class)
 
         ;
     }

@@ -38,7 +38,7 @@
                 <td>{{ tuto.resume }}</td>
                 <td>{{ tuto.niveau}}</td>
                 <td>{{ tuto.lien }}</td>
-                <td><a class="btn btn-primary" href="#">Modifier</a><a class="btn btn-danger" href="">Supprimer</a></td>
+                <td><a class="btn btn-primary" href="{{ path('modifTuto',{'id':tuto.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTuto',{'id':tuto.id})}}">Supprimer</a></td>
 
             </tr>
         {% endfor %}

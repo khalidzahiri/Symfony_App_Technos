@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block TitrePage%}
-    Liste des Astuces
+    Liste des Tips
 {% endblock %}
 
 {% block body %}
@@ -26,6 +26,9 @@
         <tr>
             <th>Nom</th>
             <th>Resume</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +36,9 @@
             <tr>
                 <td>{{ tip.nom }}</td>
                 <td>{{ tip.resume }}</td>
-                <td><a class="btn btn-primary" href="#">Modifier</a><a class="btn btn-danger" href="">Supprimer</a></td>
+                <td>{{ tip.userName }}</td>
+                <td>{{ tip.categorieTips.nom }}</td>
+                <td><a class="btn btn-primary" href="{{ path('modifTips',{'id':tip.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTip',{'id':tip.id})}}">Supprimer</a></td>
 
             </tr>
         {% endfor %}

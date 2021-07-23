@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Ajout Tutoriel
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+{% endblock %}
+
+{% block TitrePage%}
+    Ajout Tutoriel
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+    <label for="">Nom du tuto</label>
+    {{ form_row(form.nom) }}
+    <label for="">Description du Tuto</label>
+    {{ form_row(form.resume) }}
+    <label for="">Difficulté du tutoriel</label>
+    {{ form_row(form.niveau) }}
+    <label for="">Lien vers le tutoriel</label>
+    {{ form_row(form.lien) }}
+    <label for="">Technologie concernée</label>
+    {{ form_row(form.techno) }}
+
+    {{ form_row(form.Valider) }}
+
+
+
+    {{ form_end(form) }}
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/select2.js') }}"></script>
+    <script>
+        $(function(){
+            $('.select2').select2()
+
+        })
+    </script>
+{% endblock %}
+
