@@ -34,4 +34,20 @@ class FrontController extends AbstractController
 
         return $this->render('front/back.html.twig');
     }
+    /**
+     * @Route("/parcours", name="parcours")
+     */
+    public function parcours() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    {
+
+        return $this->render('front/choix-parcour.html.twig');
+    }
+    /**
+     * @Route("/profile", name="profile")
+     */
+    public function profile() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    {
+
+        return $this->render('front/profile.html.twig');
+    }
 }

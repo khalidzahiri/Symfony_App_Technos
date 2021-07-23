@@ -188,4 +188,7 @@ nav{
 .navbar form button:hover{
     background-color: #000;
 }
+ #infoTest{
+     display: none !important;
+ }
 

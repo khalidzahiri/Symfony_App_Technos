@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Profile
+{% endblock %}
+
+{% block TitrePage%}
+    Profile
+{% endblock %}
+{% block body %}
+    <div class="container-profile  ">
+        <div class="d-flex justify-content-center">
+            <div class="container-image w-25 mr-1">
+                <img class="rounded-circle w-50 m-auto" src="{{ asset('upload/0-NodeJS.jpg') }}">
+            </div>
+            <div class="container-info-profile w-25  ">
+                <h1>KHALID</h1>
+                <p>React/Node JS</p>
+                <a class="btn btn-outline-primary" href="">Contact</a>
+            </div>
+        </div>
+        <div class="form-check form-switch w-25 m-auto d-flex justify-content-between">
+            <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">INFO</span>
+            <div class="" >
+                <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
+            </div>
+            <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">SHARED</span>
+        </div>
+        <div class="container-shared w-50 m-auto " id="shared">
+            <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Primary card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-info w-50 m-auto m-3" id="infoTest" >
+            <div class="premiere-info m-3">
+                <p >Primary card title
+                    Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="deuxieme-info m-3">
+                <p>Primary card title
+                    Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+
+
+        let flexSwitchCheckDefault=document.getElementById("flexSwitchCheckDefault");
+        console.log(flexSwitchCheckDefault);
+        let infoTest=document.getElementById("infoTest");
+        let shared=document.getElementById("shared");
+        console.log(infoTest);
+        console.log(shared);
+        infoTest.style.display="none";
+        shared.style.display="flex";
+            flexSwitchCheckDefault.addEventListener("click",function(){
+                console.log(infoTest.style.display);
+                if (infoTest.style.display === "none")
+                {
+                    infoTest.style.display = "flex" ;
+                    shared.style.display="none";
+                } else {
+                    infoTest.style.display = "none" ;
+                    shared.style.display="flex";
+                }
+            })
+
+
+    </script>
+
+{% endblock %}
+

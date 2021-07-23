@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} choix parcours
+{% endblock %}
+
+{% block TitrePage%}
+    choix parcours
+{% endblock %}
+{% block body%}
+    <a class="list-group bg-light w-25 p-3 mx-auto text-center m-2 p-3" href="{{ asset('../front') }}"> FRONT END</a>
+    <a class="list-group bg-light w-25 p-3 mx-auto text-center m-2 p-3" href="{{ asset('../back') }}"> BACK END</a>
+{% endblock %}
