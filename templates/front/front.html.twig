@@ -6,6 +6,10 @@
 {% block TitrePage%}
     Parcour front-end
 {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}<link rel="stylesheet" href="{{ asset('css/scroll.css') }}"/>
+    {% endblock %}
+
 {% block body %}
     <input class="form-control w-25 p-3 mx-auto" type="text" placeholder="Search">
 
