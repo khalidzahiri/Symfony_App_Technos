@@ -39,13 +39,13 @@ class Particule{
 function init(){
     particuleTab = [];
     for(let i = 0; i < 100; i++){
-        let taille = (Math.random() + 0.01) * 30;
+        let taille = (Math.random() + 0.01) * 20;
         let x = Math.random() * (window.innerWidth - taille * 2)
         let y = Math.random() * (window.innerHeight - taille * 2)
         let directionX = (Math.random() * 0.4) - 0.2;
         // -0.2 / 0.2
         let directionY = (Math.random() * 0.4) - 0.2;
-        let couleur = "#C5D8D1";
+        let couleur = "#C2E7DA";
 
         particuleTab.push(new Particule(x,y,directionX,directionY,taille, couleur));
     }
