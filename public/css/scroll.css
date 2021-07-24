@@ -63,9 +63,6 @@ html {
     height: auto;
     flex: 0 0 auto;
     margin: 0 0.75rem;
-    border: none;
-    outline: none;
-    border-radius: 0.25rem;
     color: #252a32;
     background: #fff;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
