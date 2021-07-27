@@ -29,7 +29,7 @@ class CategorieTipsController extends AbstractController
             return $this->redirectToRoute('listCategorieTips');
 
         endif;
-        return $this->render('back/addCategorieTips.html.twig',[
+        return $this->render('categorie_tips/addCategorieTips.html.twig',[
             'form'=>$form->createView(),
             'categorieTips'=> $categorieTips
         ]);

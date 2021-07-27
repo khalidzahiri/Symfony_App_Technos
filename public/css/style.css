@@ -18,11 +18,6 @@ body::after{
     content:''; display:block; height:100px;
 }
 
-nav>h1{
-    color: #12263A !important;
-}
-
-
 .mynav{
     background-image: url('../img/bg-nav.jpg');
     height:500px;
@@ -30,14 +25,30 @@ nav>h1{
 .navbar{
     background-color: #12263A !important;
 }
+
+.navbar-dark .navbar-toggler{
+    color: #F1FFE7 !important;
+    border-color: #F1FFE7 !important;
+}
 .navbar .navbar-brand{
     font-weight: bolder;
     font-size: 1.3em;
     color: #F1FFE7 !important;
-
 }
+.navbar-toggler-icon{
+    color: #F1FFE7 !important;
+}
+
+.nav-link{
+    color: #F1FFE7 !important;
+}
+
 .navbar .navbar-nav{
     margin : 0 auto;
+}
+
+.navbar-collapse{
+    align-items: flex-end !important;
 }
 
 .navbar .dropdown-menu{
@@ -53,7 +64,7 @@ nav>h1{
 }
 
 .btn{
-    color: #06BCC1;
+    color: #ff9933;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
 }
 
@@ -64,6 +75,9 @@ nav>h1{
     height: 100%;
 }
 
+.form-control{
+    background-color: rgba(255, 255, 255, 0) !important;
+}
 
 .card-body{
     background-color: #F1FFE7 !important;
@@ -102,19 +116,47 @@ footer{
     color: #878787;
 }
 .copyright-text p a{
-    color: yellow;
+    color: #F1FFE7;
 }
+
+.copyright-text p a:hover{
+    color: #FF9933;
+}
+
 .footer-menu ul {
     display: flex;
 }
 .footer-menu li {
     margin-left: 20px;
 }
-.footer-menu li:hover a{
-    color: yellow;
+.footer-menu li a:hover{
+    color: #FF9933;
 }
 .footer-menu li a {
     font-size: 14px;
-    color: #878787;
+    color: #F1FFE7;
 }
 
+.me-auto{
+    margin-right: 0 !important;
+}
+
+.form-select{
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: #ffffff00 !important;
+    border-radius: 255px 25px 225px 25px/25px 225px 25px 255px !important;
+    border: 2px solid #333 !important;
+}
+
+.select2-dropdown {
+    background-color: #F1FFE7 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #12263A !important;
+    color: #F1FFE7 !important;
+}

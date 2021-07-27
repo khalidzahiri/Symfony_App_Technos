@@ -22,6 +22,16 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         parent::__construct($registry, User::class);
     }
 
+    public function findByUserName($username)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.username <= :val')
+            ->setParameter('val', $username)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

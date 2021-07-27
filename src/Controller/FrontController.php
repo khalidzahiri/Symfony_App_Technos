@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\TechnoRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class FrontController extends AbstractController
 {
@@ -19,33 +23,41 @@ class FrontController extends AbstractController
     /**
      * @Route("/front", name="front")
      */
-    public function front() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    public function front(TechnoRepository $technoRepository) //on injecte en dependance le repository Techno pour pouvoir heriter des methodes presente dedans
     {
+        $techno= $technoRepository->findBy(['domaine'=>'front']);
 
-        return $this->render('front/front.html.twig');
+        return $this->render('front/front.html.twig',[
+            'technos'=>$techno
+        ]);
     }
 
 
     /**
      * @Route("/back", name="back")
      */
-    public function back() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    public function back(TechnoRepository $technoRepository) //on injecte en dependance le repository Techno pour pouvoir heriter des methodes presente dedans
     {
+        $techno= $technoRepository->findBy(['domaine'=>'back']);
 
-        return $this->render('front/back.html.twig');
+        return $this->render('front/back.html.twig',[
+            'technos'=>$techno
+        ]);
     }
+
     /**
      * @Route("/parcours", name="parcours")
      */
-    public function parcours() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    public function parcours()
     {
 
         return $this->render('front/choix-parcour.html.twig');
     }
+
     /**
      * @Route("/profile", name="profile")
      */
-    public function profile() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    public function profile()
     {
 
         return $this->render('front/profile.html.twig');

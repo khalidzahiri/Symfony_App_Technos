@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ parent() }} Liste des Astuces
+    {{ parent() }} Liste des demandes
 {% endblock %}
 
 {% block TitrePage%}
-    Liste des Tips
+    Liste des demandes de statut "Pro"
 {% endblock %}
 
 {% block body %}
@@ -24,21 +24,16 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Nom</th>
-            <th>Resume</th>
-            <th>Auteur</th>
-            <th>Catégorie</th>
-            <th>Actions</th>
+            <th>Identifiant</th>
+            <th>Message</th>
         </tr>
         </thead>
         <tbody>
-        {% for tip in tips %}
+        {% for demande in demandes %}
             <tr>
-                <td>{{ tip.nom }}</td>
-                <td>{{ tip.resume }}</td>
-                <td>{{ tip.userName }}</td>
-                <td>{{ tip.categorieTips.nom }}</td>
-                <td><a class="btn btn-primary" href="{{ path('modifTips',{'id':tip.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTip',{'id':tip.id})}}">Supprimer</a><a class="btn btn-danger" href="{{ path('showOneTip',{'id':tip.id})}}">Voir détails</a></td>
+                <td>{{ demande.idUser }}</td>
+                <td>{{ demande.message }}</td>
+                <td><a class="btn btn-primary" href="{{ path('choixRole',{'id':demande.idUser})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteDemande',{'id':demande.id}) }}">Refuser</a></td>
 
             </tr>
         {% endfor %}
