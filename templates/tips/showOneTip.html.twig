@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Détail contenu
+{% endblock %}
+
+{% block TitrePage%}
+    Détails du contenu
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Resume</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ tips.nom }}</td>
+                <td>{{ tips.resume }}</td>
+                <td>{{ tips.userName }}</td>
+                <td>{{ tips.categorieTips.nom }}</td>
+
+            </tr>
+
+
+        </tbody>
+
+
+
+    </table>
+
+    {% if app.user %}
+    <div class="row justify-content-center mt-4">
+        <p><a class="text-success" href="{{ path('addLike',{'id':tips.id}) }}">J'aime</a></p><span class="text-muted">{{ tips.likes }} personne(s) aime(nt) ce contenu</span>
+    </div>
+
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form method="post" action="{{  path('addCommentaire',{'id':tips.id}) }}">
+                <div>
+                    <label class="my-2" for="commentaire">Commenter le contenu</label>
+                    <textarea class="form-control" placeholder='Veuillez saisir votre commentaire' name="commentaire"></textarea>
+                </div>
+                <button class="btn btn-primary mt-4" type="submit">Commenter</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="row justify-content-center mt-4">
+        <figure>
+            {% if tips.commentaires != NULL %}
+                {% for commentaire in tips.commentaires %}
+                <blockquote class="blockquote">
+                    <p class="mb-0">{{ commentaire.contenu }}</p>
+
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    Écrit par <cite title="Source Title">{{ commentaire.auteur }}</cite>
+                </figcaption>
+
+                {% endfor %}
+            {% endif %}
+        </figure>
+    </div>
+    {% endif %}
+
+
+{% endblock %}
+

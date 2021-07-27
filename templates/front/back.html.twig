@@ -17,13 +17,15 @@
         <div class="container">
             <div class="scroll">
 
-                <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/0-PHP.png') }}" loading="lazy" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="text text-title">PHP</h3>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                {% for techno in technos %}
+                    <div class="card border-primary" style="width: 18rem;">
+                        <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/0-PHP.png') }}" loading="lazy" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="text text-title">{{ techno.nom }}</h3>
+                            <p class="card-text">{{ techno.intro }}</p>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
 
                 <div class="card border-primary" style="width: 18rem;">
                     <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-NodeJS.png') }}" loading="lazy" alt="Card image cap">

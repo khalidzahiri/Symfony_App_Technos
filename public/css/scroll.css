@@ -60,7 +60,7 @@ html {
 }
 .main .scroll .card {
     width: 16rem;
-    height: auto;
+    height: 441px;
     flex: 0 0 auto;
     margin: 0 0.75rem;
     color: #252a32;
@@ -87,4 +87,17 @@ html {
     width: 100%;
     height: auto;
     padding: 1rem;
+}
+
+.card-body{
+    padding: 15px !important;
+}
+
+.card-text {
+    overflow: hidden !important;
+    white-space: normal !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
