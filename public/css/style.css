@@ -118,3 +118,9 @@ footer{
     color: #878787;
 }
 
+.box-intro {
+    width: 100%;
+    height: auto;
+    background-color:  #F1FFE7;
+    padding: 20px;
+}
