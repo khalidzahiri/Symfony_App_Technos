@@ -8,6 +8,16 @@
     Profile
 {% endblock %}
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
     <div class="container-profile  ">
         <div class="d-flex justify-content-center">
             <div class="container-image w-25 mr-1">
@@ -17,6 +27,9 @@
                 <h1>KHALID</h1>
                 <p>React/Node JS</p>
                 <a class="btn btn-outline-primary" href="">Contact</a>
+                {% if is_granted('ROLE_USER') %}
+                <a class="btn btn-outline-primary" href="{{ path('demandePro') }}">Devenir "Pro"</a>
+                {% endif %}
             </div>
         </div>
         <div class="form-check form-switch w-25 m-auto d-flex justify-content-between">

@@ -44,6 +44,16 @@ class Tips
      */
     private $userName;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $commentaires = [];
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->techno = new ArrayCollection();
@@ -122,6 +132,30 @@ class Tips
     public function setUserName(string $userName): self
     {
         $this->userName = $userName;
+
+        return $this;
+    }
+
+    public function getCommentaires(): ?array
+    {
+        return $this->commentaires;
+    }
+
+    public function setCommentaires(?array $commentaires): self
+    {
+        $this->commentaires = $commentaires;
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): self
+    {
+        $this->likes = $likes;
 
         return $this;
     }

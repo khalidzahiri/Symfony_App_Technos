@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Demande statut Pro
+{% endblock %}
+
+{% block TitrePage%}
+    Demande d'obtention du statut pro
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form method="post" action="{{ path('modifRole',{'id':user.id}) }}">
+                <div class="form-group">
+                    <label for="roles" class="form-label mt-4">Choisir le rôle</label>
+                    <select class="form-select" id="roles" name="roles">
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_PRO">Pro</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mt-4" type="submit">Modifier</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

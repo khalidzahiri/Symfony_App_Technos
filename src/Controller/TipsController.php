@@ -42,7 +42,7 @@ class TipsController extends AbstractController
     }
 
     /**
-     * @Route("/listTips", name="listTips")
+     * @Route("/admin/listTips", name="listTips")
      */
     public function listTips(TipsRepository $repository)
     {
@@ -87,5 +87,57 @@ class TipsController extends AbstractController
         $manager->flush();
         $this->addFlash('success', 'Le tips à bien été supprimé');
         return $this->redirectToRoute('listTips');
+    }
+
+    /**
+     * @Route("/showOneTip/{id}", name="showOneTip")
+     */
+    public function showOneTip(Tips $tips)
+    {
+        return $this->render('tips/showOneTip.html.twig',[
+            'tips'=>$tips
+        ]);
+    }
+
+    /**
+     * @Route("/addCommentaire/{id}", name="addCommentaire")
+     */
+    public function addCommentaire(Tips $tips, Request $request, EntityManagerInterface $manager)
+    {
+        if ($_POST):
+            $idTips=$tips->getId();
+            $pseudoUser=$this->getUser()->getUsername();
+            $contenuCommentaire=$request->request->get('commentaire');
+            $data = $tips->getCommentaires();
+            $data[] = ['auteur' => $pseudoUser, 'contenu' => $contenuCommentaire];
+            //dd($json);
+            $tips->setCommentaires($data);
+
+            $manager->persist($tips);
+            $manager->flush();
+
+            $this->addFlash('success', 'Le commentaire a bien été enregistré');
+            return $this->redirectToRoute('showOneTip',[
+                'tips'=>$tips,
+                'id'=>$idTips
+            ]);
+        endif;
+    }
+
+    /**
+     * @Route("/addLike/{id}", name="addLike")
+     */
+    public function addLike(Tips $tips, EntityManagerInterface $manager)
+    {
+        $idTips=$tips->getId();
+        $nbrlike=$tips->getLikes();
+        $nbrlikeUpdate=$nbrlike+1;
+        $tips->setLikes($nbrlikeUpdate);
+        $manager->persist($tips);
+        $manager->flush();
+        return $this->redirectToRoute('showOneTip',[
+            'tips'=>$tips,
+            'id'=>$idTips
+        ]);
     }
 }

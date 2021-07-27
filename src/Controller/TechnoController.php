@@ -15,25 +15,34 @@ use Symfony\Component\Routing\Annotation\Route;
 class TechnoController extends AbstractController
 {
     /**
-     * @Route("/addTechno", name="addTechno")
+     * @Route("/admin/addTechno", name="addTechno")
      */
     public function addTechno(Request $request, EntityManagerInterface $manager)
     {
 
-        $techno = new Techno();// Ici on instancie un nouvel objet Article vide que l'on va charger avec les données du formulaire
+        $techno = new Techno();
 
-        $form = $this->createForm(TechnoType::class, $techno, array('ajout'=>true));// Ici on instancie un objet form qui va controler automatiquement la correspondance des champs de formulaire (contenus dans articleType) avec l'entité Article (contenu dans $article).
+        $form = $this->createForm(TechnoType::class, $techno, array('ajout'=>true));
 
         $form->handleRequest($request); // la  methode handleRequest() de Form nous permet de preparer la requete et remplir notre Objet Article instancié
 
         if ($form->isSubmitted() && $form->isValid()): // si le formulaire a ete soumis et qu'il est valide (boolean de correspondance genere dans le createForm)
             //$techno->setCreateAt(new \DateTime('now'));
+            $photo = $form->get('photo')->getData();// on recupere l'input type file photo de notre formulaire, grace a getData() on obtient $_FILE dans son intégralité
+            if ($photo):
+                $nomphoto = date('YmdHis').uniqid().$photo->getClientOriginalName(); // Ici on modifie le nom de notre photo avec uniqid(), fonction de php generant une cle de hashage de 10 caractere aleatoires concatene avec son nom et la date avec heure, minute et seconde pour s'assurer de l'unité de la photo en bdd et en upload
+                $photo->move(
+                    $this->getParameter('upload_directory'),
+                    $nomphoto
+                ); //equivalent du move_uploaded_file() en symfony attendant 2 parametres, la direction de l'upload (defini dans config/service.yaml dans les parameters et le nom du fichier à inserer)
+                $techno->setPhoto($nomphoto);
 
-            $manager->persist($techno); //le manager de symfony fait le lien entre l'entité et la BDD vie l'ORM (Object Relationnel MApping) Doctrine. Grace a la methode persist(), il conserve en memoire la requete preparée.
-            $manager->flush(); // ici la methode flush() execute les requete en memoire
+                $manager->persist($techno); //le manager de symfony fait le lien entre l'entité et la BDD vie l'ORM (Object Relationnel MApping) Doctrine. Grace a la methode persist(), il conserve en memoire la requete preparée.
+                $manager->flush(); // ici la methode flush() execute les requete en memoire
 
-            $this->addFlash('success', 'La technologie à bien été ajouté');
-            return $this->redirectToRoute('listeTechno');
+                $this->addFlash('success', 'La technologie à bien été ajouté');
+                return $this->redirectToRoute('listeTechno');
+            endif;
 
         endif;
 

@@ -6,81 +6,67 @@
 {% block TitrePage%}
     Parcour front-end
 {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}<link rel="stylesheet" href="{{ asset('css/scroll.css') }}"/>
+    {% endblock %}
+
 {% block body %}
     <input class="form-control w-25 p-3 mx-auto" type="text" placeholder="Search">
 
     <main class="main">
         <div class="container">
             <div class="scroll">
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="{{ asset('upload/1-HTML.png') }}" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
-                        <h3 class="text text-title">HTML</h3>
-                        <p class="paragraph truncate">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, necessitatibus quam laboriosam odio reiciendis eaque a.
-                        </p>
+                {% for techno in technos %}
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-HTML.png') }}" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="text text-title">{{ techno.nom }}</h3>
+                        <p class="card-text">{{ techno.intro }}</p>
                     </div>
                 </div>
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="{{ asset('upload/1-CSS.png') }}" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
+                {% endfor %}
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-CSS.png') }}" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
                         <h3 class="text text-title">CSS</h3>
-                        <p class="paragraph truncate">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor odit velit ad unde aspernatur quas consequuntur!
-                        </p>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="{{ asset('upload/1-JS.png') }}" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
-                        <h3 class="text text-title">JavaScript</h3>
-                        <p class="paragraph truncate">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio accusamus culpa, rem vel quasi ut eligendi.
-                        </p>
+
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-JS.png') }}" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="text text-title">JS</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="{{ asset('upload/1-react.png') }}" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
-                        <h3 class="text text-title">REACT JS</h3>
-                        <p class="paragraph truncate">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam inventore aperiam officia fuga, deleniti officiis non?
-                        </p>
+
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-react.png') }}" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="text text-title">React js</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="{{ asset('upload/2-Angular.png') }}" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
-                        <h3 class="text text-title">Angular JS</h3>
-                        <p class="paragraph truncate">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ducimus architecto, impedit magni cupiditate fuga reprehenderit.
-                        </p>
+
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/2-Angular.png') }}" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="text text-title">Angular</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card list-group bg-light">
-                    <div class="card-image list-group bg-light">
-                        <img src="https://thumbs.gfycat.com/PinkPiercingBull-size_restricted.gif" loading="lazy" class="responsive" alt="Images">
-                    </div>
-                    <div class="card-inner list-group bg-light">
-                        <h3 class="text text-title">VUE JS</h3>
-                        <p class="paragraph truncate">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus repellat architecto sequi libero, explicabo nostrum delectus.
-                        </p>
+
+                <div class="card border-primary" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="https://thumbs.gfycat.com/PinkPiercingBull-size_restricted.gif" loading="lazy" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="text text-title">Vue js</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-<script src="{{ asset('js/scroller.js') }}"></script>
+    <script src="{{ asset('js/scroller.js') }}"></script>
 {% endblock %}

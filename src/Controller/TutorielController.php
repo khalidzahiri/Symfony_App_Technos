@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TutorielController extends AbstractController
 {
     /**
-     * @Route("/addTuto", name="addTuto")
+     * @Route("/admin/addTuto", name="addTuto")
      */
     public function addTuto(Request $request, EntityManagerInterface $manager)
     {
@@ -40,14 +40,14 @@ class TutorielController extends AbstractController
 
         endif;
 
-        return $this->render('back/addTuto.html.twig',[
+        return $this->render('tutoriel/addTuto.html.twig',[
             'form'=>$form->createView(),
             'tuto'=> $tutoriel
         ]);
     }
 
     /**
-     * @Route("/listeTuto", name="listeTuto")
+     * @Route("/admin/listeTuto", name="listeTuto")
      */
     public function listeTuto(TutorielRepository $repository)
     {

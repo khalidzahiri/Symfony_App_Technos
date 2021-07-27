@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Demande statut Pro
+{% endblock %}
+
+{% block TitrePage%}
+    Demande d'obtention du statut pro
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form method="post" action="{{ path('addDemandePro') }}">
+                <div>
+                    <label class="my-2" for="message">Message de demande</label>
+                    <textarea class="form-control" placeholder='Veuillez nous indiquer pourquoi vous souhaitez obtenir le statut "Pro"' name="message"></textarea>
+                </div>
+                <button class="btn btn-primary mt-4" type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

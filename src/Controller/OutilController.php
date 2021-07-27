@@ -31,7 +31,7 @@ class OutilController extends AbstractController
             return $this->redirectToRoute('listeOutil');
 
         endif;
-                return $this->render('back/addOutil.html.twig',[
+                return $this->render('outil/addOutil.html.twig',[
                     'form'=>$form->createView(),
                     'outil'=> $outil
                 ]);
@@ -83,5 +83,15 @@ class OutilController extends AbstractController
         $manager->flush();
         $this->addFlash('success', 'L\outil à bien été supprimé');
         return $this->redirectToRoute('listeOutil');
+    }
+
+    /**
+     * @Route("/showOutil/{id}", name="showOutils")
+     */
+    public function showOutil(Outil $outil)
+    {
+        return $this->render('outil/showOutil.html.twig',[
+            'outil'=>$outil
+        ]);
     }
 }
