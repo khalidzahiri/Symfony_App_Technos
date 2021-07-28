@@ -11,12 +11,12 @@
     <div class="container-profile d-flex justify-content-between text-center">
         <div class="div-left">
             <div class="container-image mb-5">
-                <img class="rounded-circle m-auto w-75" src="{{ asset('upload/0-NodeJS.jpg') }}">
+                <img class="rounded-circle m-auto w-75" src="{{ user.photo }}">
             </div>
             <div class="container-info-profile text-center">
-                <h1>KHALID</h1>
+                <h1>{{ user.username }}</h1>
                 <p>React/Node JS</p>
-                <a class="btn btn-outline-primary" href="">Contact</a>
+                <a class="btn btn-outline-primary" href="{{ user.linkedin }}">Contact</a>
             </div>
         </div>
         <div class="div-right w-50">
@@ -43,12 +43,20 @@
             </div>
             <div class="container-info m-auto justify-content-around " id="infoTest" >
                 <div class="premiere-info m-3">
-                    <p >Primary card title
-                        Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4>Nom/Prenom</h4>
+                    <p>{{ user.nom }} {{ user.prenom }}</p>
+                    <h4>Occupation</h4>
+                    <p>Etudiant</p>
+                    <h4>Ville</h4>
+                    <p>Paris</p>
+
+
                 </div>
                 <div class="deuxieme-info m-3">
-                    <p>Primary card title
-                        Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4>Github</h4>
+                    <p><a href="{{ user.github }}">lien pour la repository</a></p>
+                    <h4>Bio</h4>
+                    <p>je suis en reconversion professionnel et j'aimerais bien recevoir des feedback mes projet sur github.</p>
                 </div>
 
             </div>

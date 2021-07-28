@@ -3,10 +3,14 @@
     {{ parent() }} choix parcours
 {% endblock %}
 
-{% block TitrePage%}
-    choix parcours
-{% endblock %}
+   {% block stylesheets %}
+       {{ parent() }}<link rel="stylesheet" href="{{ asset('css/parcours.css') }}"/>
+   {% endblock %}
+
 {% block body%}
-    <a class="list-group bg-light w-25 p-3 mx-auto text-center m-2 p-3" href="{{ asset('../front') }}"> FRONT END</a>
-    <a class="list-group bg-light w-25 p-3 mx-auto text-center m-2 p-3" href="{{ asset('../back') }}"> BACK END</a>
+    <div class="row">
+        <a id="front" class="list-group h-100  col-md-12"href="{{ asset('../front') }}"><p>FRONT-END</p></a>
+        <a id="back" class="list-group h-100  col-md-12" href="{{ asset('../back') }}"><p>BACK-END</p></a>
+    </div>
 {% endblock %}
+
