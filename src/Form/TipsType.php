@@ -8,6 +8,7 @@ use App\Entity\Tips;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,7 +25,7 @@ class TipsType extends AbstractType
                     'placeholder'=>'Veuillez saisir le nom de la technologie choisie'
                 ]
             ])
-            ->add('resume', TextType::class,[
+            ->add('resume', TextareaType::class,[
                 'required'=>false,
                 'label'=>false,
                 'attr'=>[

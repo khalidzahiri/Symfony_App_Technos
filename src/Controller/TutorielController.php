@@ -25,9 +25,9 @@ class TutorielController extends AbstractController
 
         $tutoriel = new Tutoriel();// Ici on instancie un nouvel objet Article vide que l'on va charger avec les données du formulaire
 
-        $form = $this->createForm(TutorielType::class, $tutoriel);// Ici on instancie un objet form qui va controler automatiquement la correspondance des champs de formulaire (contenus dans articleType) avec l'entité Article (contenu dans $article).
+        $form = $this->createForm(TutorielType::class, $tutoriel);// Ici on instancie un objet form qui va controler automatiquement la correspondance des champs de formulaire avec l'entité..
 
-        $form->handleRequest($request); // la  methode handleRequest() de Form nous permet de preparer la requete et remplir notre Objet Article instancié
+        $form->handleRequest($request); // la  methode handleRequest() de Form nous permet de preparer la requete et remplir notre Objet instancié
 
         if ($form->isSubmitted() && $form->isValid()): // si le formulaire a ete soumis et qu'il est valide (boolean de correspondance genere dans le createForm)
             //$techno->setCreateAt(new \DateTime('now'));

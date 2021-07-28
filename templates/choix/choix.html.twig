@@ -5,6 +5,11 @@
 
 {% block TitrePage%}
 {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }} <link rel="stylesheet" href="{{ asset('css/all.css') }}"/>
+        {{ parent() }} <link rel="stylesheet" href="{{ asset('css/choix.css') }}"/>
+    {% endblock %}
+
 
 {% block body %}
     {% for message in app.flashes('success') %}
@@ -18,74 +23,112 @@
         </div>
     {% endfor %}
 
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="tab" href="#Intro">Intro</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#Doc">Documentation</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#Inspiration">Inspiration</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#profile">Outils</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#profile">Astuce</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">Pro</a>
-    </li>
-</ul>
-<div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade show active" id="Intro">
-        <p> JavaScript (souvent abrégé en « JS ») est un langage de script léger, orienté objet, principalement connu comme le langage de script des pages web. Mais il est aussi utilisé dans de nombreux environnements extérieurs aux navigateurs web tels que Node.js, Apache CouchDB voire Adobe Acrobat. Le code JavaScript est interprété ou compilé à la volée (JIT). C'est un langage à objets utilisant le concept de prototype, disposant d'un typage faible et dynamique qui permet de programmer suivant plusieurs paradigmes de programmation : fonctionnelle, impérative et orientée objet. Apprenez-en plus sur JavaScript.
-        </p>
-    </div>
-    <div class="tab-pane fade" id="Doc">
-        <p style="text-align: center"> la documentation pour javascript <div class="d-grid gap-2">
-            <button class="btn btn-lg btn-primary" type="button"><a style="color: white" href="https://developer.mozilla.org/fr/docs/orphaned/Web/JavaScript/Guide">Developer mozilla</a></button>
-            <button class="btn btn-lg btn-primary" type="button"><a style="color: white" href="https://developer.mozilla.org/fr/docs/orphaned/Web/JavaScript/Guide">Developer mozilla</a></button>
-
-        </div>
-
-        .</p>
-    </div>
-    <div class="tab-pane fade" id="Tuto">
-        <div class="card mb-3 col-sm-4">
-            <h3 class="card-header">Crash course.</h3>
-            <div class="card-body">
-                <h6 class="card-subtitle text-muted">by admin khalid</h6>
-            </div>
-            <iframe width="90%" height="315" src="https://www.youtube.com/embed/H6EhXPX5ejQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="card-body">
-                <a href="#" class="card-link">Save for later</a>
-                <a href="#" class="card-link">Recommend</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            {% if activeTuto is defined %}
+            <a class="nav-link" data-bs-toggle="tab" href="#Intro">Intro</a>
+            {% else %}
+            <a class="nav-link active" data-bs-toggle="tab" href="#Intro">Intro</a>
+            {% endif %}
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Doc">Documentation</a>
+        </li>
+        <li class="nav-item">
+            {% if activeTuto is defined %}
+                <a class="nav-link active" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
+            {% else %}
+                <a class="nav-link" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
+            {% endif %}
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Inspiration">Astuce</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Outils">Outils</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        {% if activeTuto is defined %}
+        <div class="tab-pane fade" id="Intro">
+            {% else %}
+            <div class="tab-pane fade show active" id="Intro">
+                {% endif %}
+            <div class="box-intro">
+                <p> {{techno.intro}}
+                </p>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="Inspiration">
-        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-                <div class="card-header">Repository github</div>
-                <div class="card-body">
-                    <h4 class="card-title">Awesome JavaScript 10/07/2021</h4>
-                    <p class="card-text">A collection of awesome browser-side JavaScript libraries, resources and shiny things.
+        <div class="tab-pane fade" id="Doc">
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg" type="button"><a style="color: #F1FFE7; text-decoration: none"  href="{{ techno.doc }}">Documentation {{ techno.nom}}</a></button>
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="Inspiration">
+            {% for tip in techno.tips %}
+            <div class="card my-3 mx-auto col-lg-8">
+                <div class="card bg-dark mb-3">
+                    <a href="{{ path('showOneTip', {'id': tip.id}) }}">
+                    <div class="card-header text-white">{{ tip.categorieTips.nom }}</div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ tip.nom }}</h3>
+                        <p class="card-text">{{ tip.resume}}
                         </p>
+                        <div class="numbers d-flex justify-content-around">
+                            <div class="likes">
+                                <span>{{ tip.likes }}</span>
+                                <i class="far fa-thumbs-up fa-lg"></i></div>
+                            <div class="comments">
+                                <span>{{ tip.commentaires|length }}</span>
+                                <i class="far fa-comment-alt fa-lg"></i></div>
+                        </div>
+                    </div>
+                    </a>
                 </div>
             </div>
+            {% endfor %}
+        </div>
+
+        <div class="tab-pane fade" id="Outils">
+            <div class="accordion" id="accordionExample">
+                {% for outil in techno.outils %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            {{ outil.nom }}
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                        <div class="accordion-body" style="background-color: #f1ffE7;">
+                            {{ outil.resume }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% if activeTuto is defined %}
+        <div class="tab-pane fade show active d-flex justify-content-around flex-wrap" id="Tuto">
+    {% else %}
+        <div class="tab-pane fade d-flex justify-content-around flex-wrap" id="Tuto">
+    {% endif %}
+
+            {% for tuto in techno.tutoriels %}
+            <div class="card bg-secondary m-2 col-sm-8 col-xl-5">
+                <h3 class="card-header text-white">{{ tuto.nom }}</h3>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ tuto.lien|slice(32) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="card-body">
+                    <p class="card-text">{{ tuto.resume }}</p>
+                </div>
+                <div class="card-body d-flex justify-content-end align-content-space-between">
+                    <a href="{{ path('addFavoris', {'idTechno': techno.id, 'idTuto': tuto.id}) }}" class="card-link"><i class="fas fa-save fa-2x"></i></a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-</div>
 
 {% endblock %}

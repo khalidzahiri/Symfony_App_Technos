@@ -19,7 +19,7 @@ body::after{
 }
 
 .mynav{
-    background-image: url('../img/bg-nav.jpg');
+    background-image: url('../upload/logo.png');
     height:500px;
 }
 .navbar{
@@ -146,6 +146,12 @@ footer{
     border-radius: 255px 25px 225px 25px/25px 225px 25px 255px !important;
 }
 
+.box-intro {
+    width: 100%;
+    height: auto;
+    background-color: #F1FFE7;
+    padding: 20px;
+}
 .select2-container--default .select2-selection--multiple {
     background-color: #ffffff00 !important;
     border-radius: 255px 25px 225px 25px/25px 225px 25px 255px !important;

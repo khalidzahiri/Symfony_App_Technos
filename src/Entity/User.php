@@ -94,6 +94,11 @@ class User implements UserInterface
      */
     private $github;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $tutofavoris = [];
+
 
     public function getId(): ?int
     {
@@ -233,6 +238,18 @@ class User implements UserInterface
     public function setGithub(?string $github): self
     {
         $this->github = $github;
+
+        return $this;
+    }
+
+    public function getTutofavoris(): ?array
+    {
+        return $this->tutofavoris;
+    }
+
+    public function setTutofavoris(?array $tutofavoris): self
+    {
+        $this->tutofavoris = $tutofavoris;
 
         return $this;
     }

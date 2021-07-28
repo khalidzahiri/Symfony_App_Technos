@@ -18,7 +18,9 @@
             <div class="scroll">
                 {% for techno in technos %}
                 <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-HTML.png') }}" loading="lazy" alt="Card image cap">
+                    <a href="{{ path('choix', {'id': techno.id}) }}">
+                        <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-HTML.png') }}" loading="lazy" alt="Card image cap">
+                    </a>
                     <div class="card-body">
                         <h3 class="text text-title">{{ techno.nom }}</h3>
                         <p class="card-text">{{ techno.intro }}</p>

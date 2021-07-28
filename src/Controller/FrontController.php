@@ -59,7 +59,7 @@ class FrontController extends AbstractController
      */
     public function profile()
     {
-
         return $this->render('front/profile.html.twig');
     }
+
 }

@@ -8,75 +8,62 @@
     Profile
 {% endblock %}
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div class="row justify-content-center mt-4">
-            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
-        </div>
-    {% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="row justify-content-center mt-4">
-            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
-        </div>
-    {% endfor %}
-    <div class="container-profile  ">
-        <div class="d-flex justify-content-center">
-            <div class="container-image w-25 mr-1">
-                <img class="rounded-circle w-50 m-auto" src="{{ asset('upload/0-NodeJS.jpg') }}">
+    <div class="container-profile d-flex justify-content-between text-center">
+        <div class="div-left">
+            <div class="container-image mb-5">
+                <img class="rounded-circle m-auto w-75" src="{{ asset('upload/0-NodeJS.jpg') }}">
             </div>
-            <div class="container-info-profile w-25  ">
+            <div class="container-info-profile text-center">
                 <h1>KHALID</h1>
                 <p>React/Node JS</p>
                 <a class="btn btn-outline-primary" href="">Contact</a>
-                {% if is_granted('ROLE_USER') %}
-                <a class="btn btn-outline-primary" href="{{ path('demandePro') }}">Devenir "Pro"</a>
-                {% endif %}
             </div>
         </div>
-        <div class="form-check form-switch w-25 m-auto d-flex justify-content-between">
-            <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">INFO</span>
-            <div class="" >
-                <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
+        <div class="div-right w-50">
+            <div class="form-check form-switch w-50 m-auto d-flex justify-content-around">
+                <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">SHARED</span>
+                <div class="" >
+                    <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
+                </div>
+                <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">INFO</span>
             </div>
-            <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">SHARED</span>
-        </div>
-        <div class="container-shared w-50 m-auto " id="shared">
-            <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
-                <div class="card-body">
-                    <h4 class="card-title">Primary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="container-shared m-auto justify-content-around" id="shared">
+                <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                    <div class="card-body text-dark">
+                        <h4 class="card-title">Primary card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                    <div class="card-body text-dark">
+                        <h4 class="card-title">Primary card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
                 </div>
             </div>
-            <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
-                <div class="card-body">
-                    <h4 class="card-title">Primary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="container-info m-auto justify-content-around " id="infoTest" >
+                <div class="premiere-info m-3">
+                    <p >Primary card title
+                        Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
+                <div class="deuxieme-info m-3">
+                    <p>Primary card title
+                        Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+
             </div>
         </div>
-        <div class="container-info w-50 m-auto m-3" id="infoTest" >
-            <div class="premiere-info m-3">
-                <p >Primary card title
-                    Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div class="deuxieme-info m-3">
-                <p>Primary card title
-                    Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-
-        </div>
-    </div>
-    <script>
+        <script>
 
 
-
-        let flexSwitchCheckDefault=document.getElementById("flexSwitchCheckDefault");
-        console.log(flexSwitchCheckDefault);
-        let infoTest=document.getElementById("infoTest");
-        let shared=document.getElementById("shared");
-        console.log(infoTest);
-        console.log(shared);
-        infoTest.style.display="none";
-        shared.style.display="flex";
+            let flexSwitchCheckDefault=document.getElementById("flexSwitchCheckDefault");
+            console.log(flexSwitchCheckDefault);
+            let infoTest=document.getElementById("infoTest");
+            let shared=document.getElementById("shared");
+            console.log(infoTest);
+            console.log(shared);
+            infoTest.style.display="none";
+            shared.style.display="flex";
             flexSwitchCheckDefault.addEventListener("click",function(){
                 console.log(infoTest.style.display);
                 if (infoTest.style.display === "none")
@@ -90,7 +77,7 @@
             })
 
 
-    </script>
-
+        </script>
+    </div>
+    </div>
 {% endblock %}
-
