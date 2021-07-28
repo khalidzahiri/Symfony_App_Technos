@@ -57,9 +57,11 @@ class FrontController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
-    public function profile()
+    public function profile(UserRepository $userRepository)
     {
-        return $this->render('front/profile.html.twig');
+        $user = $this->getUser();
+        return $this->render('front/profile.html.twig',[
+            'user'=>$user
+        ]);
     }
-
 }

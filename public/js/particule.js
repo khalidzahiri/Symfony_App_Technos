@@ -1,79 +1,106 @@
-const canvas = document.getElementById('canvas1');
-const ctx = canvas.getContext('2d');
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
-let particuleTab;
+var canvasDots = function() {
+    var canvas = document.querySelector('canvas'),
+        ctx = canvas.getContext('2d'),
+        colorDot = '#12263A',
+        color = '#12263A';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.display = 'block';
+    ctx.fillStyle = colorDot;
+    ctx.lineWidth = .1;
+    ctx.strokeStyle = color;
 
-class Particule{
-    constructor(x, y, directionX, directionY, taille, couleur){
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.taille = taille;
-        this.couleur = couleur;
+    var mousePosition = {
+        x: 30 * canvas.width / 100,
+        y: 30 * canvas.height / 100
+    };
+
+    var dots = {
+        nb: 600,
+        distance: 60,
+        d_radius: 100,
+        array: []
+    };
+
+    function Dot(){
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+
+        this.vx = -.5 + Math.random();
+        this.vy = -.5 + Math.random();
+
+        this.radius = Math.random();
     }
-    dessine(){
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.taille, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.couleur;
-        ctx.fill();
-    }
-    MAJ(){
-        if(this.x + this.taille > canvas.width || this.x - this.taille < 0) {
-            this.directionX = -this.directionX;
+
+    Dot.prototype = {
+        create: function(){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fill();
+        },
+
+        animate: function(){
+            for(i = 0; i < dots.nb; i++){
+
+                var dot = dots.array[i];
+
+                if(dot.y < 0 || dot.y > canvas.height){
+                    dot.vx = dot.vx;
+                    dot.vy = - dot.vy;
+                }
+                else if(dot.x < 0 || dot.x > canvas.width){
+                    dot.vx = - dot.vx;
+                    dot.vy = dot.vy;
+                }
+                dot.x += dot.vx;
+                dot.y += dot.vy;
+            }
+        },
+
+        line: function(){
+            for(i = 0; i < dots.nb; i++){
+                for(j = 0; j < dots.nb; j++){
+                    i_dot = dots.array[i];
+                    j_dot = dots.array[j];
+
+                    if((i_dot.x - j_dot.x) < dots.distance && (i_dot.y - j_dot.y) < dots.distance && (i_dot.x - j_dot.x) > - dots.distance && (i_dot.y - j_dot.y) > - dots.distance){
+                        if((i_dot.x - mousePosition.x) < dots.d_radius && (i_dot.y - mousePosition.y) < dots.d_radius && (i_dot.x - mousePosition.x) > - dots.d_radius && (i_dot.y - mousePosition.y) > - dots.d_radius){
+                            ctx.beginPath();
+                            ctx.moveTo(i_dot.x, i_dot.y);
+                            ctx.lineTo(j_dot.x, j_dot.y);
+                            ctx.stroke();
+                            ctx.closePath();
+                        }
+                    }
+                }
+            }
         }
-        if(this.y + this.taille > canvas.height || this.y - this.taille < 0){
-            this.directionY = -this.directionY;
+    };
+
+    function createDots(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for(i = 0; i < dots.nb; i++){
+            dots.array.push(new Dot());
+            dot = dots.array[i];
+
+            dot.create();
         }
-        this.x += this.directionX;
-        this.y += this.directionY;
-        this.dessine();
+
+        dot.line();
+        dot.animate();
     }
 
-}
-// const obj1 = new Particule(300,300,1,1,100,"black");
-// console.log(obj1)
-// obj1.dessine();
-
-function init(){
-    particuleTab = [];
-    for(let i = 0; i < 100; i++){
-        let taille = (Math.random() + 0.01) * 20;
-        let x = Math.random() * (window.innerWidth - taille * 2)
-        let y = Math.random() * (window.innerHeight - taille * 2)
-        let directionX = (Math.random() * 0.4) - 0.2;
-        // -0.2 / 0.2
-        let directionY = (Math.random() * 0.4) - 0.2;
-        let couleur = "#C2E7DA";
-
-        particuleTab.push(new Particule(x,y,directionX,directionY,taille, couleur));
+    window.onmousemove = function(parameter) {
+        mousePosition.x = parameter.pageX;
+        mousePosition.y = parameter.pageY;
     }
-}
 
-function animation(){
-    requestAnimationFrame(animation);
-    ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
+    mousePosition.x = window.innerWidth / 2;
+    mousePosition.y = window.innerHeight / 2;
 
-    for(let i = 0; i < particuleTab.length; i++){
-        particuleTab[i].MAJ();
-    }
-}   
+    setInterval(createDots, 1000/30);
+};
 
-init();
-animation();
-console.log(particuleTab)
-
-
-function resize(){
-    init();
-    animation();
-}
-
-let doit;
-window.addEventListener('resize', () => {
-    clearTimeout(doit);
-    doit = setTimeout(resize, 100);
-    ctx.canvas.width = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
-})
+window.onload = function() {
+    canvasDots();
+};
