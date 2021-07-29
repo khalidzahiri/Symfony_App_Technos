@@ -66,6 +66,15 @@ body::after{
 .btn{
     color: #ff9933;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    background-color: rgba(10, 10, 10, 0);
+    border-color: #ff9933 !important;
+}
+
+.btn:hover{
+    color: #FFF;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+    background-color: #ff9933;
+    border-color: #ff9933 !important;
 }
 
 .fondhome {

@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Serializable;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -19,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @method string getUserIdentifier()
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     // notre user implémentant userInterface hérite à  présent obligatoirement des méthodes de cette interface
     // getPassword(), getSalt, getRoles(), eraseCedentials(), getUsername
@@ -47,15 +49,19 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Veuillez remplir le champs")
-     * @Assert\EqualTo(propertyPath="confirmPassword", message="Les mots de passe ne sont pas identiques")
+     *
      */
     private $password;
 
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne sont pas identiques")
+     * @Assert\NotBlank(message="Veuillez remplir le champs")
+     */
     public $confirmPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
-     *@Assert\NotBlank(message="Veuillez remplir le champs")
+     * @Assert\NotBlank(message="Veuillez remplir le champs")
      */
     private $nom;
 
@@ -100,7 +106,7 @@ class User implements UserInterface
     private $tutofavoris = [];
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $bio;
 
@@ -305,5 +311,46 @@ class User implements UserInterface
         return $this;
     }
 
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password,
+            $this->nom,
+            $this->prenom,
+            $this->roles,
+            $this->reset,
+            $this->linkedin,
+            $this->github,
+            $this->tutofavoris,
+            $this->bio,
+            $this->ville,
+            $this->occupation
 
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    public function unserialize($data)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password,
+            $this->nom,
+            $this->prenom,
+            $this->roles,
+            $this->reset,
+            $this->linkedin,
+            $this->github,
+            $this->tutofavoris,
+            $this->bio,
+            $this->ville,
+            $this->occupation
+            ) = unserialize($data);
+    }
 }

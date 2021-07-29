@@ -3,17 +3,13 @@
     {{ parent() }} Choix parcours
 {% endblock %}
 
-{% block TitrePage%}
-    Choix du parcour
-{% endblock %}
-
    {% block stylesheets %}
        {{ parent() }}<link rel="stylesheet" href="{{ asset('css/parcours.css') }}"/>
    {% endblock %}
 
 {% block body%}
-    <div class="row">
-        <a id="front" class="list-group h-100  col-md-12"href="{{ asset('../front') }}"><p>FRONT-END</p></a>
-        <a id="back" class="list-group h-100  col-md-12" href="{{ asset('../back') }}"><p>BACK-END</p></a>
+    <div class="row container-fluid">
+        <a id="front" class="list-group col-md-12"href="{{ asset('../front') }}"><p>FRONT-END</p></a>
+        <a id="back" class="list-group col-md-12" href="{{ asset('../back') }}"><p>BACK-END</p></a>
     </div>
 {% endblock %}

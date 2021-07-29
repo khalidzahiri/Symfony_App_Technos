@@ -17,23 +17,21 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
-    <nav class="bg-dark navbar-dark">
-        <div class="container"></div>
-    </nav>
-    <section id="header" class="jumbotron text-center">
+
+    <section id="header" class="jumbotron text-center mt-5">
         <h1 class="display-3 m-4">Welcome to DicoWeb</h1>
-        <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <p class="lead">Ici, vous trouverez du contenu pour vous aider à apprendre/pratiquer le développement web.</p>
 
         <div class="d-grid gap-2">
             <a href="{{ path('parcours') }}">
-            <button type="button" class="col-6 btn btn-outline-success btn-lg mx-auto">Choisir une techno</button></a>
+            <button type="button" class="col-6 btn btn-outline-success btn-lg mx-auto">Choisir un parcours</button></a>
 
         </div>
     </section>
-    <section id="gallery">
+    <section id="gallery" >
 
-        <div class="container mb-4">
-            <h5 class="my-4">Ce que nous vous conseillons pour commencer :</h5>
+        <div class="container">
+            <h5 class="my-4 5">Ce que nous vous conseillons pour commencer :</h5>
             <div class="row">
                 {% for techno in technos %}
                 <div class="col-lg-4 mb-4">

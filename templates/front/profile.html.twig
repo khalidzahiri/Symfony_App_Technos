@@ -12,17 +12,34 @@
     Profil
 {% endblock %}
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
     <div class="container-profile d-flex text-center flex-wrap ">
-        <div class="row div-left col-md-6 col-12">
+        <div class=" div-left col-md-6 col-12">
             <div class="container-image mb-5">
                 <img class="rounded-circle m-auto" height="100px" width="100px" src="{{ asset('upload/'~user.photo) }}">
             </div>
             <div class="container-info-profile text-center">
                 <h1>{{ user.username }}</h1>
                 <a class="btn btn-outline-primary " href="{{ user.linkedin }}">Contact</a>
+                {% if notmine!=true %}
+                    <a class="btn btn-outline-primary " href="{{ path('demandePro') }}">Devenir "Pro"</a>
+                    <a class="btn btn-outline-primary " href="{{ path('modifUser', {'id': user.id}) }}">Modifier profil</a>
+                {% endif %}
+
             </div>
+
         </div>
-        <div class="row div-right col-md-6 col-12 mt-5">
+        <div class="div-right col-md-6 col-12 mt-5">
             <div class="form-check form-switch w-50 m-auto d-flex justify-content-around">
                 <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">SHARED</span>
                 <div class="" >
@@ -30,12 +47,12 @@
                 </div>
                 <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">INFO</span>
             </div>
-            <div class="container-shared m-auto justify-content-around" id="shared">
+            <div class="container-shared m-auto flex-wrap" id="shared">
                 {% if favoris == false %}
                     <p>Vous n'avez pas enregistré de tutoriel</p>
                {% else %}
                     {% for favori in favoris %}
-                    <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                    <div class="card text-white bg-primary m-3 col-12 mx-auto" style="max-width: 20rem;">
                         <a href="{{ path('showOneTuto', {'id': favori.id}) }}">
                         <div class="card-body text-dark">
                             <h4 class="card-title">{{ favori.nom }}</h4>
@@ -59,7 +76,7 @@
                 </div>
                 <div class="deuxieme-info m-3">
                     <h4>Github</h4>
-                    <p><a href="{{ user.github }}">lien pour la repository</a></p>
+                    <p><a href="{{ user.github }}">Lien vers les repository GitHub</a></p>
                     <h4>Bio</h4>
                     <p>{{ user.bio }}</p>
                 </div>

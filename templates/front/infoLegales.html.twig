@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Infos Légales
+{% endblock %}
+
+{% block TitrePage%}
+    Information Légales
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <p class="text-center">
+            DicoWeb est une plateforme de contenu sur l'apprentissage du developpement Web.
+        Nous mettons a disposition du contenu (tutoriels, outils, contenus tiers...)  permettant de faciliter cet apprentissage et le quotidien des développeurs web. De plus, nous permettons aux développeurs les plus experimentés d'apporter du contenu (tips) supplémentaires afin d'aider la communauté à évoluer.
+        </p>
+        <br>
+        <p class="text-center">
+            Contactez-nous par email: <a href="{{ path('contact') }}">Contacts</a>
+        </p>
+        <br>
+        <p class="text-center">
+            Le site est en accès gratuit. Cependant si vous décidez de vous inscrire gratuitement
+            pour profiter des avantages de la plateforme, comme poser des questions sur l'espace commentaire,
+            profiter des contenus ou encore contribuer à la plateforme, vous disposez d'un droit d'accès,
+            d'édition et de suppression de vos données personnelles, et d'autre part vos données personnelles
+            ne seront pas transmises à un tiers sans votre consentement.
+        </p>
+    </div>
+
+{% endblock %}
+

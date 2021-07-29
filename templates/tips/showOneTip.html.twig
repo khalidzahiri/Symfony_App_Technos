@@ -24,12 +24,14 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
-<article class="sans-serif dark-gray ph3 ph0-ns mv5 center grid layout measure-wide-m mw8-l">
 
     <div class="layout--meta mt5 mt0-ns h-100-ns flex flex-column justify-between">
         <div class="mb3 mb0-ns">
-            <p class="f6 mt2">By {{ tips.userName }}</p>
-            <time class="f6 ttu tracked silver">apr—24—2017 10:05am</time>
+            {% if not app.user %}
+                <p class="f6 mt2">By {{ tips.userName }}</p>
+            {% else %}
+                <p class="f6 mt2">By <a href="{{ path('otherProfile', {'userName': tips.userName}) }}">{{ tips.userName }}</a></p>
+            {% endif %}
         </div>
 
     </div>
@@ -38,24 +40,27 @@
         <h1 class="lh-solid f1 f-subheadline-m f-headline-l purple b mv0">
             {{tips.nom}}
         </h1>
-        <h2 class="f4 f3-l mb0 light-red lh-title">This tips is about React</h2>
     </header>
 
-    <section class="layout--copy1 cols-no-break cols--1 cols--2-l mt5 lh-copy">
-        <p class="mt0">It was a Thursday at around 10 p.m., and the weekly <em>League of Legends</em> tournament was underway at PC Gamerz, a gaming cafe in Honolulu, Hawaii. The store was cool and dark inside, lit by the glow of monitors and a neon-green Monster energy drink sign plugged into the wall. Most of the patrons — almost all young men — were fixated on their screens, but occasionally something would happen in a game, and a corner of the room would break out into raucous commentary.</p>
+    <section class="layout--copy1 cols-no-break cols--1 cols--2-l mt-5 lh-copy">
+        <p class="mt0">{{ tips.resume }}</p>
 
 
     </section>
 
     <section class="layout--copy2 lh-copy">
         {% if app.user %}
+            <br>
+            <br>
             <div class="row justify-content-center mt-4">
                 <p><a class="text-success" href="{{ path('addLike',{'id':tips.id}) }}">J'aime</a></p><span class="text-muted">{{ tips.likes }} personne(s) aime(nt) ce contenu</span>
             </div>
 
 
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-6">
+            <br>
+            <br>
+            <div class="row mt-4">
+                <div class="col-md-6 col-12">
                     <form method="post" action="{{  path('addCommentaire',{'id':tips.id}) }}">
                         <div>
                             <label class="my-2" for="commentaire">Commenter le contenu</label>
@@ -65,6 +70,12 @@
                     </form>
                 </div>
             </div>
+        {% else %}
+            <br>
+            <br>
+            <br>
+            <H4>Commentaires</H4>
+            <p>(Pour commenter le contenu ou consulter le profil de l'auteur, veuillez vous connecter)</p>
         {% endif %}
 
             <div class="row justify-content-center mt-4">

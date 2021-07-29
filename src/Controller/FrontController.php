@@ -62,10 +62,12 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/prafile", name="profile")
      */
     public function profile(UserRepository $userRepository, TutorielRepository $tutorielRepository)
     {
+        $notmine=false;
+
         $user = $this->getUser();
         $idFavoris= $this->getUser()->getTutoFavoris();
         //dd($idFavoris);
@@ -78,17 +80,30 @@ class FrontController extends AbstractController
         endif;
         return $this->render('front/profile.html.twig',[
             'user'=>$user,
-            'favoris'=>$favoris
+            'favoris'=>$favoris,
+            'notmine'=>$notmine
         ]);
     }
 
     /**
-     * @Route("/otherProfile/{id}", name="otherProfile")
+     * @Route("/otherProfile/{userName}", name="otherProfile")
      */
-    public function otherProfile(User $user)
+    public function otherProfile(UserRepository $userRepository, $userName ,TutorielRepository $tutorielRepository)
     {
+        $notmine=true;
+        $user=$userRepository->findOneBy(['username'=>$userName]);
+        $idFavoris= $user->getTutoFavoris();
+        if ($idFavoris != []):
+            foreach ($idFavoris as $idFavori):
+                $favoris[]=$tutorielRepository->find($idFavori);
+            endforeach;
+        else:
+            $favoris=false;
+        endif;
         return $this->render('front/profile.html.twig',[
-            'user'=>$user
+            'user'=>$user,
+            'favoris'=>$favoris,
+            'notmine'=>$notmine
         ]);
     }
 
@@ -110,4 +125,11 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/infoLegales", name="infoLegales")
+     */
+    public function infoLegales()
+    {
+        return $this->render('front/infoLegales.html.twig');
+    }
 }

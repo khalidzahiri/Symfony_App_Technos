@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ parent() }} Inscription
+    {{ parent() }} Modification Profil
 {% endblock %}
 
 {% block TitrePage%}
-    Inscription
+    Modification Profil
 {% endblock %}
 
 {% block body %}
@@ -28,10 +28,6 @@
     {{ form_row(form.prenom) }}
     <label for="">Email</label>
     {{ form_row(form.email) }}
-    <label for="">Mot de Passe</label>
-    {{ form_row(form.password) }}
-    <label for="">Confirmer mot de passe</label>
-    {{ form_row(form.confirmPassword) }}
     <label for="">Profil Linkedin</label>
     {{ form_row(form.linkedin) }}
     <label for="">Profil GitHub</label>
@@ -40,11 +36,11 @@
     {{ form_row(form.bio) }}
     <label for="">Ville</label>
     {{ form_row(form.ville) }}
-    <label for="">Situation professionnelle</label>
+    <label for="">Situation Professionnel</label>
     {{ form_row(form.occupation) }}
 
     <label for="">Photo de profil</label>
-    {{ form_row(form.photo, { 'attr':{"onChange":"loadFile(event)"} }) }}
+    {{ form_row(form.photoModif, { 'attr':{"onChange":"loadFile(event)"} }) }}
     <div class="col-md-12 text-center">
 
         <img id="image" style='width:300px'>
@@ -73,3 +69,4 @@
         })
     </script>
 {% endblock %}
+

@@ -1,19 +1,18 @@
 #front{
+    padding-top: 10px;
     display: block;
     text-decoration: none;
-    padding: 100px 0;
     background-color: #F1FFE7;
     border: 3px #FF9933 solid ;
-    margin-bottom: 100px;
+    margin: 100px 0px;
 }
 
 #back {
     display: block;
+    padding-top: 10px;
     text-decoration: none;
-    padding: 100px 0;
     background-color: #F1FFE7;
     border: 3px #FF9933 solid ;
-    margin-bottom: 100px;
 }
 
 
@@ -21,6 +20,7 @@ p{
     color: #12263A;
     font-size: 130px;
     text-align: center;
+    margin: 0 !important;
 }
 #front:hover, #back:hover {
     background-color: #C2E7DA;
