@@ -77,6 +77,30 @@ class RegistrationType extends AbstractType
                     "placeholder"=>"Vous pouvez ici saisir le lien de votre profil GitHub"
                 ]
             ])
+            ->add('bio',TextType::class,[
+                "required"=>false,
+                "label"=>false,
+                "attr"=>[
+                    "placeholder"=>"Vous pouvez ici saisir votre bio"
+                ]
+            ])
+            ->add('ville',TextType::class,[
+                "required"=>false,
+                "label"=>false,
+                "attr"=>[
+                    "placeholder"=>"Vous pouvez ici saisir votre ville"
+                ]
+            ])
+            ->add('occupation',TextType::class,[
+                "required"=>false,
+                "label"=>false,
+                "attr"=>[
+                    "placeholder"=>"Vous pouvez ici votre occupation"
+                ]
+            ])
+
+
+
             ->add('valider', SubmitType::class)
         ;
     }
