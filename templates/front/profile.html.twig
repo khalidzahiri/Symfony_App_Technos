@@ -12,18 +12,17 @@
     Profil
 {% endblock %}
 {% block body %}
-    <div class="container-profile d-flex justify-content-between text-center">
-        <div class="div-left">
+    <div class="container-profile d-flex justify-content-between text-center flex-md-wrap ">
+        <div class="row div-left col-md-6 col-sm-12">
             <div class="container-image mb-5">
-                <img class="rounded-circle m-auto w-75" src="{{ user.photo }}">
+                <img class="rounded-circle m-auto w-25" src="upload/{{ user.photo }}">
             </div>
             <div class="container-info-profile text-center">
                 <h1>{{ user.username }}</h1>
-                <p>React/Node JS</p>
                 <a class="btn btn-outline-primary" href="{{ user.linkedin }}">Contact</a>
             </div>
         </div>
-        <div class="div-right w-50">
+        <div class="row div-right w-50 col-md-6 col-sm-12">
             <div class="form-check form-switch w-50 m-auto d-flex justify-content-around">
                 <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">SHARED</span>
                 <div class="" >
@@ -32,18 +31,20 @@
                 <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">INFO</span>
             </div>
             <div class="container-shared m-auto justify-content-around" id="shared">
-                <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
-                    <div class="card-body text-dark">
-                        <h4 class="card-title">Primary card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                {% if favoris == false %}
+                    <p>Vous n'avez pas enregistré de tutoriel</p>
+               {% else %}
+                    {% for favori in favoris %}
+                    <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
+                        <a href="{{ path('showOneTuto', {'id': favori.id}) }}">
+                        <div class="card-body text-dark">
+                            <h4 class="card-title">{{ favori.nom }}</h4>
+                            <p class="card-text">{{ favori.resume }}</p>
+                        </div>
+                        </a>
                     </div>
-                </div>
-                <div class="card text-white bg-primary m-3" style="max-width: 20rem;">
-                    <div class="card-body text-dark">
-                        <h4 class="card-title">Primary card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="container-info m-auto justify-content-around " id="infoTest" >
                 <div class="premiere-info m-3">

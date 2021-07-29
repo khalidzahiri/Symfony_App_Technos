@@ -93,4 +93,14 @@ class TutorielController extends AbstractController
         $this->addFlash('success', 'Le tutoriel à bien été supprimé');
         return $this->redirectToRoute('listeTuto');
     }
+
+    /**
+     * @Route("/showOneTuto/{id}", name="showOneTuto")
+     */
+    public function showOneTuto(Tutoriel $tutoriel)
+    {
+        return $this->render('tutoriel/showOneTuto.html.twig',[
+            'tuto'=>$tutoriel
+        ]);
+    }
 }

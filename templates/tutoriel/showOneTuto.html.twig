@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Détail Tuto
+{% endblock %}
+    {% block stylesheets %}
+        {{ parent() }} <link rel="stylesheet" href="{{ asset('css/oneTip.css') }}"/>
+    {% endblock %}
+
+
+{% block TitrePage%}
+    Détails du Tuto
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+<div class="container">
+    <div class="card bg-secondary">
+        <h3 class="card-header text-white">{{ tuto.nom }}</h3>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ tuto.lien|slice(32) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="card-body">
+            <p class="card-text">{{ tuto.resume }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
