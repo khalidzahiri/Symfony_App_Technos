@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminBase.html.twig' %}
 {% block title %}
-    {{ parent() }} Ajout Technologie
+    {{ parent() }} Ajout Techno
 {% endblock %}
 
 {% block stylesheets %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block TitrePage%}
-    Ajout Article
+    Ajout techno
 {% endblock %}
 
 {% block body %}
@@ -46,7 +46,7 @@
 
 
     {{ form_end(form) }}
-
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script>
 
         var loadFile = function (event) {

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="#">
+    <title>{% block title %} DicoWeb | {% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/paneladmin.css') }}"/>
+    {% endblock %}
+
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+    {% endblock %}
+</head>
+<body  style="overflow-x: hidden;">
+<canvas class='connecting-dots'></canvas>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-2" href="{{ path('home')}}">DicoWeb</a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('login') }}">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('register') }}">Inscription</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('profile') }}">Profil</a>
+                    </li>
+                    {% if is_granted('ROLE_PRO') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('addTips') }}">Ajouter Tips</a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Panel Admin</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<main class="row">
+    <div class="col-3">
+        <ul class="nav nav-pills flex-column">
+        <a class="" href="{{ path('home') }}">Quitter le panel</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option Technologies</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item color" href="{{ path('addTechno')}}">Ajout d'une techno</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('listeTechno') }}">Liste des technos</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option Tutoriels</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item color" href="{{ path('addTuto')}}">Ajout d'un tutoriel</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('listeTuto') }}">Liste des tutoriels</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option Tips</a>
+            <div class="dropdown-menu color">
+                <a class="dropdown-item color" href="{{ path('addTips')}}">Ajout d'un tips</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('addCategorieTips')}}">Ajout d'une catégorie de tips</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('listTips')}}">Liste des tips</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('listCategorieTips') }}">Liste des catégories de tips</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Option Outils</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item color" href="{{ path('addOutil')}}">Ajout d'un outil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item color" href="{{ path('listeOutil') }}">Liste des outils</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion demande statut</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item color" href="{{ path('listeDemandePro')}}">Liste des demandes de satut "Pro"</a>
+            </div>
+        </li>
+        </ul>
+    </div>
+
+
+    <div class="row col-9">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6 d-flex justify-content-center" style="margin-top: 15px">
+                <h1>{% block TitrePage %}{% endblock %}</h1>
+            </div>
+        </div>
+        <div class="container mt-3">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</main>
+<footer class="">
+    <div class="copyright-area">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                <div class="copyright-text">
+                    <p>Copyright &copy; 2021, All Right Reserved <a href="webforce3.fr/">WF3</a></p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 d-none d-lg-block text-center">
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="#">Parcour</a></li>
+                        <li><a href="#">Contactez Nous</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% block JS %}
+    <script src="{{ asset('js/jsbootstrap/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('js/particule.js') }}"></script>
+{% endblock %}
+</body>
+</html>

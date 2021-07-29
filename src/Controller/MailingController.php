@@ -21,7 +21,7 @@ class MailingController extends AbstractController
             ->setUsername('test.testwf3@gmail.com')
             ->setPassword('testwf3dev');
 
-        $mailer=new Swift_Mailer($transporter);
+        $mailer=new \Swift_Mailer($transporter);
 
         $mess = $request->request->get('message');
         $name = $request->request->get('name');
@@ -41,7 +41,6 @@ class MailingController extends AbstractController
                 'surname'=>$surname,
                 'subject'=>$subject,
                 'message'=>$mess,
-                'logo'=>$cid,
                 'objectif'=>'Accéder au site',
                 'liens'=> 'http://127.0.0.1:8000'
             ]),
@@ -187,5 +186,48 @@ class MailingController extends AbstractController
         endif;
 
         return $this->render('security/resetPassword.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('front/contact.html.twig');
+    }
+
+    /**
+     * @Route ("/contactMail", name="contactMail")
+     */
+    public function contactMail(Request $request)
+    {
+        $transporter=(new \Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+            ->setUsername('test.testwf3@gmail.com')
+            ->setPassword('testwf3dev');
+
+        $mailer=new \Swift_Mailer($transporter);
+
+        $idUser = $request->request->get('idUser');
+        $mess = $request->request->get('message');
+        $subject = $request->request->get('subject');
+        $from = $request->request->get('email');
+
+        $message= (new \Swift_Message($subject))
+            ->setFrom('test.testwf3@gmail.com')
+            ->setTo('test.testwf3@gmail.com');
+
+        $message->SetBody(
+            $this->render('mail/mailContactTemplate.html.twig', [
+                'idUser'=>$idUser,
+                'from'=>$from,
+                'subject'=>$subject,
+                'message'=>$mess,
+            ]),
+            'text/html'
+        );
+        $mailer->send($message);
+
+        $this->addFlash('success', 'Le message a bien été transmis');
+        return $this->redirectToRoute('home');
     }
 }

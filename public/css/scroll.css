@@ -91,6 +91,7 @@ html {
 
 .card-body{
     padding: 15px !important;
+    padding-bottom: 10px!important;
 }
 
 .card-text {

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} Contact
+{% endblock %}
+
+{% block TitrePage%}
+    Contactez-nous
+{% endblock %}
+
+{% block body %}
+    {#{{ form(form) }}#}{##}
+    {% for message in app.flashes('success') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-success col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="row justify-content-center mt-4">
+            <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
+        </div>
+    {% endfor %}
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <form method="post" action="{{ path('contactMail') }}">
+                <input type="hidden" name="idUser" value="{{ app.user.id }}">
+                <div>
+                    <label class="my-2" for="email">Adresse Mail</label>
+                    <input class="form-control" placeholder='Saisissez une adresse email à laquelle nous pourrons vous répondre' name="email">
+                </div>
+                <div>
+                    <label class="my-2" for="subject">Objet</label>
+                    <input class="form-control" placeholder="Saisissez ici l\'objet de votre demande" name="subject">
+                </div>
+                <div>
+                    <label class="my-2" for="message">Message</label>
+                    <textarea class="form-control" placeholder='Saisissez ici le contenu de votre message' name="message"></textarea>
+                </div>
+                <button class="btn btn-primary mt-4" type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -20,12 +20,10 @@ class ChoixController extends AbstractController
      */
     public function choix(Techno $techno)
     {
-        $datas = $this->getUser()->getTutofavoris();
         $tutos=$techno->getTutoriels();
 
         return $this->render('choix/choix.html.twig',[
-            'techno'=>$techno,
-            'datas'=>$datas
+            'techno'=>$techno
         ]);
     }
 

@@ -9,7 +9,6 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('css/profile.css') }}"/>
     {% endblock %}
 
     {% block javascripts %}
@@ -49,7 +48,7 @@
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Panel Admin</a>
+                                <a class="nav-link" href="{{ path('addTechno') }}">Panel Admin</a>
                             </li>
                         {% endif %}
                         <li class="nav-item">
@@ -81,8 +80,8 @@
                 <div class="col-xl-6 col-lg-6 d-none d-lg-block text-center">
                     <div class="footer-menu">
                         <ul>
-                            <li><a href="#">Parcour</a></li>
-                            <li><a href="#">Contactez Nous</a></li>
+                            <li><a href="{{ path('parcours') }}">Parcour</a></li>
+                            <li><a href="{{ path('contact') }}">Contactez Nous</a></li>
                             <li><a href="#">Privacy</a></li>
                         </ul>
                     </div>
@@ -91,7 +90,7 @@
         </div>
     </footer>
     {% block JS %}
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jsbootstrap/bootstrap.bundle.js') }}"></script>
         <script src="{{ asset('js/particule.js') }}"></script>
     {% endblock %}
 </body>

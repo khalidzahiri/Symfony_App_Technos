@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminBase.html.twig' %}
 
 {% block title %}
-    {{ parent() }} Liste des Astuces
+    {{ parent() }} Liste des Tips
 {% endblock %}
 
 {% block TitrePage%}
@@ -25,7 +25,6 @@
         <thead>
         <tr>
             <th>Nom</th>
-            <th>Resume</th>
             <th>Auteur</th>
             <th>Catégorie</th>
             <th>Actions</th>
@@ -35,10 +34,9 @@
         {% for tip in tips %}
             <tr>
                 <td>{{ tip.nom }}</td>
-                <td>{{ tip.resume }}</td>
                 <td>{{ tip.userName }}</td>
                 <td>{{ tip.categorieTips.nom }}</td>
-                <td><a class="btn btn-primary" href="{{ path('modifTips',{'id':tip.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTip',{'id':tip.id})}}">Supprimer</a><a class="btn btn-danger" href="{{ path('showOneTip',{'id':tip.id})}}">Voir détails</a></td>
+                <td><a class="btn btn-primary" href="{{ path('showOneTip',{'id':tip.id})}}">Détails</a><a class="btn btn-primary" href="{{ path('modifTips',{'id':tip.id})}}">Modifier</a><a class="btn btn-danger" href="{{ path('deleteTip',{'id':tip.id})}}">Supprimer</a></td>
 
             </tr>
         {% endfor %}

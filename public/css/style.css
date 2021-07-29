@@ -183,3 +183,12 @@ footer{
     background-color: #F1FFE7;
     padding: 20px;
 }
+
+.card-text {
+    overflow: hidden !important;
+    white-space: normal !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

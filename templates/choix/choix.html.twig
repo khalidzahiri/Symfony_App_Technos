@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    {{ parent() }} Accueil
+    {{ parent() }} {{ techno.nom }}
 {% endblock %}
 
 {% block TitrePage%}
+    {{ techno.nom }}
 {% endblock %}
     {% block stylesheets %}
         {{ parent() }} <link rel="stylesheet" href="{{ asset('css/all.css') }}"/>
@@ -26,26 +27,26 @@
     <ul class="nav nav-tabs">
         <li class="nav-item">
             {% if activeTuto is defined %}
-            <a class="nav-link" data-bs-toggle="tab" href="#Intro">Intro</a>
+            <a class="nav-link color" data-bs-toggle="tab" href="#Intro">Intro</a>
             {% else %}
-            <a class="nav-link active" data-bs-toggle="tab" href="#Intro">Intro</a>
+            <a class="nav-link active color" data-bs-toggle="tab" href="#Intro">Intro</a>
             {% endif %}
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#Doc">Documentation</a>
+            <a class="nav-link color" data-bs-toggle="tab" href="#Doc">Documentation</a>
         </li>
         <li class="nav-item">
             {% if activeTuto is defined %}
-                <a class="nav-link active" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
+                <a class="nav-link active color" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
             {% else %}
-                <a class="nav-link" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
+                <a class="nav-link color" data-bs-toggle="tab" href="#Tuto">Tutoriel</a>
             {% endif %}
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#Inspiration">Astuce</a>
+            <a class="nav-link color" data-bs-toggle="tab" href="#Inspiration">Astuce</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#Outils">Outils</a>
+            <a class="nav-link color" data-bs-toggle="tab" href="#Outils">Outils</a>
         </li>
     </ul>
     <div id="myTabContent" class="tab-content">

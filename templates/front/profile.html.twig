@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ parent() }} Profile
+    {{ parent() }} Profil
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }} <link rel="stylesheet" href="{{ asset('css/profile.css') }}"/>
 {% endblock %}
 
 {% block TitrePage%}
-    Profile
+    Profil
 {% endblock %}
 {% block body %}
     <div class="container-profile d-flex justify-content-between text-center">

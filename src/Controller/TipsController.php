@@ -18,22 +18,27 @@ class TipsController extends AbstractController
 {
 
     /**
-     *@Route("/addTips", name="addTips")
+     *@Route("/pro/addTips", name="addTips")
      */
     public function addTips(EntityManagerInterface $manager, Request $request, UserInterface $user)
     {
         $tips=new Tips();
         $form=$this->createForm(TipsType::class, $tips);
         $form->handleRequest($request);
+        $role=$this->getUser()->getRoles();
 
         if ($form->isSubmitted() && $form->isValid()):
             $userName= $user->getUsername();
             $tips->setUserName($userName);
             $manager->persist($tips);
             $manager->flush();
-            $this->addFlash('success', 'Le tips à bien été ajouté');
-            return $this->redirectToRoute('listTips');
-
+            if ($role==['ROLE_ADMIN']):
+                $this->addFlash('success', 'Le tips à bien été ajouté');
+                return $this->redirectToRoute('listTips');
+            else:
+                $this->addFlash('success', 'Le tips à bien été ajouté');
+                return $this->redirectToRoute('home');
+            endif;
         endif;
         return $this->render('tips/addTips.html.twig',[
             'form'=>$form->createView(),

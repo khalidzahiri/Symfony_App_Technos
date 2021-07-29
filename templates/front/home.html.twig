@@ -25,43 +25,27 @@
         <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
 
         <div class="d-grid gap-2">
-            <button type="button" class="col-6 btn btn-outline-success btn-lg mx-auto">Get Started</button>
+            <a href="{{ path('parcours') }}">
+            <button type="button" class="col-6 btn btn-outline-success btn-lg mx-auto">Choisir une techno</button></a>
 
         </div>
     </section>
     <section id="gallery">
+
         <div class="container mb-4">
+            <h5 class="my-4">Ce que nous vous conseillons pour commencer :</h5>
             <div class="row">
+                {% for techno in technos %}
                 <div class="col-lg-4 mb-4">
                     <div class="card">
-                        <img src="{{ asset('upload/html.png') }}"  alt="" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">HTML</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
+                            <h5 class="card-title">{{ techno.nom }}</h5>
+                            <p class="card-text">{{ techno.intro }}</p>
+                            <a href="{{ path('choix', {'id': techno.id}) }}" class="btn btn-outline-success btn-sm mx-auto d-block">En savoir plus</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('upload/css.png') }}" alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">CSS</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('upload/js.png') }}"  alt="" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Javascript</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>
-                            <a href="" class="btn btn-outline-success btn-sm mx-auto d-block">Learn now</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

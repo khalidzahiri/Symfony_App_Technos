@@ -15,11 +15,15 @@ class FrontController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home() //on injecte en dependance le repository Article pour pouvoir heriter des methodes presente dedans
+    public function home(TechnoRepository $technoRepository)
     {
-
-        return $this->render('front/home.html.twig');
+        $technos=$technoRepository->findBy(array('domaine'=>'Front'), array("id"=>'ASC'), 3);
+        return $this->render('front/home.html.twig',[
+            'technos'=>$technos
+        ]);
     }
+
+
     /**
      * @Route("/front", name="front")
      */
@@ -64,4 +68,15 @@ class FrontController extends AbstractController
             'user'=>$user
         ]);
     }
+
+    /**
+     * @Route("/otherProfile/{id}", name="otherProfile")
+     */
+    public function otherProfile(User $user)
+    {
+        return $this->render('front/profile.html.twig',[
+            'user'=>$user
+        ]);
+    }
+
 }
