@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\TechnoRepository;
+use App\Repository\TutorielRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,11 +62,21 @@ class FrontController extends AbstractController
     /**
      * @Route("/profile", name="profile")
      */
-    public function profile(UserRepository $userRepository)
+    public function profile(UserRepository $userRepository, TutorielRepository $tutorielRepository)
     {
         $user = $this->getUser();
+        $idFavoris= $this->getUser()->getTutoFavoris();
+        //dd($idFavoris);
+        if ($idFavoris != []):
+            foreach ($idFavoris as $idFavori):
+                $favoris[]=$tutorielRepository->find($idFavori);
+            endforeach;
+        else:
+            $favoris=false;
+        endif;
         return $this->render('front/profile.html.twig',[
-            'user'=>$user
+            'user'=>$user,
+            'favoris'=>$favoris
         ]);
     }
 
