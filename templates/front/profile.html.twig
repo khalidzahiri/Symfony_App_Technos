@@ -50,9 +50,9 @@
                     <h4>Nom/Prenom</h4>
                     <p>{{ user.nom }} {{ user.prenom }}</p>
                     <h4>Occupation</h4>
-                    <p>Etudiant</p>
+                    <p>{{ user.occupation }}</p>
                     <h4>Ville</h4>
-                    <p>Paris</p>
+                    <p>{{ user.ville }}</p>
 
 
                 </div>
@@ -60,7 +60,7 @@
                     <h4>Github</h4>
                     <p><a href="{{ user.github }}">lien pour la repository</a></p>
                     <h4>Bio</h4>
-                    <p>je suis en reconversion professionnel et j'aimerais bien recevoir des feedback mes projet sur github.</p>
+                    <p>{{ user.bio }}</p>
                 </div>
 
             </div>

@@ -99,6 +99,21 @@ class User implements UserInterface
      */
     private $tutofavoris = [];
 
+    /**
+     * @ORM\Column(type="string", length=1000)
+     */
+    private $bio;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $occupation;
+
 
     public function getId(): ?int
     {
@@ -250,6 +265,42 @@ class User implements UserInterface
     public function setTutofavoris(?array $tutofavoris): self
     {
         $this->tutofavoris = $tutofavoris;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(string $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getOccupation(): ?string
+    {
+        return $this->occupation;
+    }
+
+    public function setOccupation(string $occupation): self
+    {
+        $this->occupation = $occupation;
 
         return $this;
     }
