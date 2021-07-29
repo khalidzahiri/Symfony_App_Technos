@@ -12,17 +12,17 @@
     Profil
 {% endblock %}
 {% block body %}
-    <div class="container-profile d-flex justify-content-between text-center flex-md-wrap ">
-        <div class="row div-left col-md-6 col-sm-12">
+    <div class="container-profile d-flex text-center flex-wrap ">
+        <div class="row div-left col-md-6 col-12">
             <div class="container-image mb-5">
-                <img class="rounded-circle m-auto w-25" src="upload/{{ user.photo }}">
+                <img class="rounded-circle m-auto" height="100px" width="100px" src="{{ asset('upload/'~user.photo) }}">
             </div>
             <div class="container-info-profile text-center">
                 <h1>{{ user.username }}</h1>
-                <a class="btn btn-outline-primary" href="{{ user.linkedin }}">Contact</a>
+                <a class="btn btn-outline-primary " href="{{ user.linkedin }}">Contact</a>
             </div>
         </div>
-        <div class="row div-right w-50 col-md-6 col-sm-12">
+        <div class="row div-right col-md-6 col-12 mt-5">
             <div class="form-check form-switch w-50 m-auto d-flex justify-content-around">
                 <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">SHARED</span>
                 <div class="" >

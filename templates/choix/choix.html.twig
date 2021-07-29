@@ -124,9 +124,11 @@
                 <div class="card-body">
                     <p class="card-text">{{ tuto.resume }}</p>
                 </div>
+                {% if app.user %}
                 <div class="card-body d-flex justify-content-end align-content-space-between">
                     <a href="{{ path('addFavoris', {'idTechno': techno.id, 'idTuto': tuto.id}) }}" class="card-link"><i class="fas fa-save fa-2x"></i></a>
                 </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>

@@ -7,7 +7,9 @@ use App\Repository\TechnoRepository;
 use App\Repository\TutorielRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -87,6 +89,24 @@ class FrontController extends AbstractController
     {
         return $this->render('front/profile.html.twig',[
             'user'=>$user
+        ]);
+    }
+
+    /**
+     * @Route("/searchRender", name="searchRender")
+     */
+    public function search(TechnoRepository $technoRepository, Request $request, SessionInterface $session)
+    {
+        $session->set('techno', "");
+        $search= $request->query->get('search');
+
+        $techno=$technoRepository->search($search);
+
+        $session->set('techno', $techno);
+        $techno=$session->get('techno');
+
+        return $this->render('front/front.html.twig',[
+            'technos'=>$techno
         ]);
     }
 

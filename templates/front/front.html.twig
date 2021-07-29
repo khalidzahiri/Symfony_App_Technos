@@ -11,8 +11,10 @@
     {% endblock %}
 
 {% block body %}
-    <input class="form-control w-25 p-3 mx-auto" type="text" placeholder="Search">
-
+    <form class="d-flex mx-auto justify-content-center" action="{{ path('searchRender') }}">
+    <input class="form-control m-1 w-25" type="text" placeholder="Saisissez une technologie" name="search">
+    <button class="btn btn-primary" type="submit">Rechercher</button>
+    </form>
     <main class="main">
         <div class="container">
             <div class="scroll">

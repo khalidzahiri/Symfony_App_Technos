@@ -19,6 +19,18 @@ class TechnoRepository extends ServiceEntityRepository
         parent::__construct($registry, Techno::class);
     }
 
+    public function search($filter)
+    {
+        $builder=$this->createQueryBuilder('a');
+        return $builder
+            ->andWhere('a.nom LIKE :nom')
+            ->setParameter('nom', '%'.$filter.'%')
+            ->getQuery()
+            ->getResult();
+
+
+    }
+
     // /**
     //  * @return Techno[] Returns an array of Techno objects
     //  */
