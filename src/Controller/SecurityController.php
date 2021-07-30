@@ -29,6 +29,11 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()):
 
             $hash=$user->getPassword();
+            if (strlen($hash)<5):
+                $this->addFlash('error', 'Veuillez saisir un mot de passe supérieur à 5 caractéres');
+                return $this->render('security/registration.html.twig',[
+                    'form'=>$form->createView()]);
+            endif;
             $hashpassword=$encoder->encodePassword($user, $hash);
             $user->setPassword($hashpassword);
             $photo = $form->get('photo')->getData();

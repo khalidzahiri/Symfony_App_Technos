@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="{{ asset('upload/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('upload/favicon.ico') }}">
     <title>{% block title %} DicoWeb | {% endblock %}</title>
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -81,7 +81,10 @@
                     <div class="footer-menu">
                         <ul>
                             <li><a href="{{ path('parcours') }}">Parcours</a></li>
-                            <li><a href="{{ path('contact') }}">Contactez-nous</a></li>
+                            {% if app.user %}
+                                <li><a href="{{ path('contact') }}">Contactez-nous</a></li>
+                            {% endif %}
+
                             <li><a href="{{ path('infoLegales') }}">Informations Légales</a></li>
                         </ul>
                     </div>
