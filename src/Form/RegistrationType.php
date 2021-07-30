@@ -84,7 +84,7 @@ class RegistrationType extends AbstractType
                 "required"=>false,
                 "label"=>false,
                 "attr"=>[
-                    "placeholder"=>"Vous pouvez ici saisir votre bio"
+                    "placeholder"=>"Petite présentation qui nous permet de vous connaitre"
                 ]
             ])
             ->add('ville',TextType::class,[
@@ -98,7 +98,7 @@ class RegistrationType extends AbstractType
                 "required"=>false,
                 "label"=>false,
                 "attr"=>[
-                    "placeholder"=>"Vous pouvez ici votre occupation"
+                    "placeholder"=>"Exemple : 'Développeur Web React/JS' / 'Étudiant' ..."
                 ]
             ])
 

@@ -20,21 +20,21 @@
     {% endfor %}
 
     {{ form_start(form) }}
-    <label for="">Pseudo</label>
+    <label for="">Pseudo *</label>
     {{ form_row(form.username) }}
-    <label for="">Nom</label>
+    <label for="">Nom *</label>
     {{ form_row(form.nom) }}
-    <label for="">Prenom</label>
+    <label for="">Prenom *</label>
     {{ form_row(form.prenom) }}
-    <label for="">Email</label>
+    <label for="">Email *</label>
     {{ form_row(form.email) }}
-    <label for="">Mot de Passe</label>
+    <label for="">Mot de Passe *</label>
     {{ form_row(form.password) }}
-    <label for="">Confirmer mot de passe</label>
+    <label for="">Confirmer mot de passe *</label>
     {{ form_row(form.confirmPassword) }}
     <label for="">Profil Linkedin</label>
     {{ form_row(form.linkedin) }}
-    <label for="">Profil GitHub</label>
+    <label for="">Profil GitHub (Si le lien est valide,  la photo de profil sera automatiquement généré à partir de GitHub.fr)</label>
     {{ form_row(form.github) }}
     <label for="">Bio</label>
     {{ form_row(form.bio) }}
@@ -50,6 +50,7 @@
         <img id="image" style='width:300px'>
 
     </div>
+    <p>(*) = Champs Obligatoires</p>
     {{ form_row(form.valider) }}
 
 

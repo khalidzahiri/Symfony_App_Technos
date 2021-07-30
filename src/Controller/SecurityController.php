@@ -42,6 +42,8 @@ class SecurityController extends AbstractController
                 );
 
                 $user->setPhoto($nomphoto);
+            else:
+                $user->setPhoto('avatar.png');
             endif;
 
             $manager->persist($user);
@@ -76,9 +78,9 @@ class SecurityController extends AbstractController
                     $this->getParameter('upload_directory'),
                     $nomphoto
                 );
-
+                if ($user->getPhoto()!== null):
                 unlink($this->getParameter('upload_directory').'/'.$user->getPhoto());
-
+                endif;
                 $user->setPhoto($nomphoto);
 
 
@@ -89,7 +91,7 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Le profil à bien été modifié');
             return $this->redirectToRoute('profile');
             elseif($form->isSubmitted() && !$form->isValid()):
-                $this->addFlash('error', 'marche pas');
+                $this->addFlash('error', 'Une erreur est survenue');
         endif;
 
         return $this->render('security/modifUser.html.twig',[

@@ -33,7 +33,7 @@ class MailingController extends AbstractController
             ->setFrom($from)
             ->setTo('test.testwf3@gmail.com');
 
-        $cid=$message->embed(\Swift_Image::fromPath("upload/logo.png"));
+        $cid=$message->embed(\Swift_Image::fromPath("upload/favicon.png"));
         $message->SetBody(
             $this->render('mail/mail_template.html.twig', [
                 'from'=>$from,
@@ -104,7 +104,7 @@ class MailingController extends AbstractController
 
                 $manager->persist($user);
                 $manager->flush();
-                $cid=$message->embed(\Swift_Image::fromPath("upload/logo.png"));
+                $cid=$message->embed(\Swift_Image::fromPath("upload/favicon.png"));
                 $message->SetBody(
                     $this->render('mail/mail_template.html.twig', [
                         'from'=>$from,

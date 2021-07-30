@@ -19,7 +19,7 @@ body::after{
 }
 
 .mynav{
-    background-image: url('../upload/logo.png');
+    background-image: url('../upload/favicon.png');
     height:500px;
 }
 .navbar{

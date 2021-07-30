@@ -11,53 +11,25 @@
     {% endblock %}
 
 {% block body %}
-    <input class="form-control w-25 p-3 mx-auto" type="text" placeholder="Search">
 
+    <form class="d-flex mx-auto justify-content-center" action="{{ path('searchRender') }}">
+        <input class="form-control m-1 w-25" type="text" placeholder="Saisissez une technologie" name="search">
+        <button class="btn btn-primary" type="submit">Rechercher</button>
+    </form>
     <main class="main">
         <div class="container">
             <div class="scroll">
-
                 {% for techno in technos %}
                     <div class="card border-primary" style="width: 18rem;">
-                        <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/0-PHP.png') }}" loading="lazy" alt="Card image cap">
+                        <a href="{{ path('choix', {'id': techno.id}) }}">
+                            <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="upload/{{ techno.photo }}" loading="lazy" alt="Card image cap">
+                        </a>
                         <div class="card-body">
                             <h3 class="text text-title">{{ techno.nom }}</h3>
                             <p class="card-text">{{ techno.intro }}</p>
                         </div>
                     </div>
                 {% endfor %}
-
-                <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-NodeJS.png') }}" loading="lazy" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="text text-title">Node js</h3>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-python.png') }}" loading="lazy" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="text text-title">Python</h3>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-MySQL.png') }}" loading="lazy" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="text text-title">MySQL</h3>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-
-                <div class="card border-primary" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail" style="height: 300px;object-fit: cover;" src="{{ asset('upload/1-SQL.jpg') }}" loading="lazy" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="text text-title">SQL</h3>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
 
             </div>
         </div>

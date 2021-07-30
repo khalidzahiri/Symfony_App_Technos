@@ -55,7 +55,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne sont pas identiques")
-     * @Assert\NotBlank(message="Veuillez remplir le champs")
      */
     public $confirmPassword;
 

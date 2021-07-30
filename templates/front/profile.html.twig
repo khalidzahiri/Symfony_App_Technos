@@ -22,17 +22,23 @@
             <div class="alert alert-danger col-md-6 text-center">{{ message }}</div>
         </div>
     {% endfor %}
-
+    <input type="hidden" value="{{ user.github|slice(19) }}" class="inp-recherche">
     <div class="container-profile d-flex text-center flex-wrap ">
         <div class=" div-left col-md-6 col-12">
-            <div class="container-image mb-5">
+            <div class="container-image mb-5 affichage">
                 <img class="rounded-circle m-auto" height="100px" width="100px" src="{{ asset('upload/'~user.photo) }}">
             </div>
             <div class="container-info-profile text-center">
                 <h1>{{ user.username }}</h1>
-                <a class="btn btn-outline-primary " href="{{ user.linkedin }}">Contact</a>
+                {% if user.linkedin != null %}
+                    <a class="btn btn-outline-primary " href="{{ user.linkedin }}">Contact</a>
+                {% endif %}
+
                 {% if notmine!=true %}
-                    <a class="btn btn-outline-primary " href="{{ path('demandePro') }}">Devenir "Pro"</a>
+                    {% if is_granted('ROLE_USER') %}
+                        <a class="btn btn-outline-primary " href="{{ path('demandePro') }}">Devenir "Pro"</a>
+                    {% endif %}
+
                     <a class="btn btn-outline-primary " href="{{ path('modifUser', {'id': user.id}) }}">Modifier profil</a>
                 {% endif %}
 
@@ -41,15 +47,15 @@
         </div>
         <div class="div-right col-md-6 col-12 mt-5">
             <div class="form-check form-switch w-50 m-auto d-flex justify-content-around">
-                <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">SHARED</span>
+                <span class="form-check-label mr-1" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked">Enregistrements</span>
                 <div class="" >
                     <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault">
                 </div>
-                <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">INFO</span>
+                <span class="form-check-label" for="flexSwitchCheckChecked " id="flexSwitchCheckChecked1">Infos</span>
             </div>
             <div class="container-shared m-auto flex-wrap" id="shared">
                 {% if favoris == false %}
-                    <p>Vous n'avez pas enregistré de tutoriel</p>
+                    <p class="mt-4 mx-auto">Aucun enregistrement</p>
                {% else %}
                     {% for favori in favoris %}
                     <div class="card text-white bg-primary m-3 col-12 mx-auto" style="max-width: 20rem;">
@@ -75,8 +81,12 @@
 
                 </div>
                 <div class="deuxieme-info m-3">
-                    <h4>Github</h4>
-                    <p><a href="{{ user.github }}">Lien vers les repository GitHub</a></p>
+                    {% if user.github != null %}
+                        <h4>Github</h4>
+                        <p><a href="{{ user.github }}">Lien vers les repository GitHub</a></p>
+                    {% endif %}
+
+
                     <h4>Bio</h4>
                     <p>{{ user.bio }}</p>
                 </div>
@@ -110,4 +120,5 @@
         </script>
     </div>
     </div>
+    <script src="{{ asset('js/apiGitHub.js') }}"></script>
 {% endblock %}
